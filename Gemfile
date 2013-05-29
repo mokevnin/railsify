@@ -45,6 +45,7 @@ gem 'unicorn'
 
 group :development do
   gem 'capistrano'
+  gem 'sqlite3'
 end
 
 # Use debugger
