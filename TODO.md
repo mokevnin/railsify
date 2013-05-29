@@ -1,3 +1,4 @@
+* add badges
 * haml
 * twitter-bootstrap-rails
 * User (login, email, password_digest, state)
