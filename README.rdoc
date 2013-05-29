@@ -1,2 +1,7 @@
+== badgies
+== setup
+    cp database.yml.sample database.yml
+
+== examples
 * .sample
 * controllers structure
