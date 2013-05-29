@@ -1,4 +1,7 @@
 RailsExamples::Application.routes.draw do
+  scope module: :web do
+    resources :users, only: [:index]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
