@@ -49,6 +49,7 @@ gem 'unicorn-rails'
 group :development do
   gem 'capistrano'
   gem 'sqlite3'
+  gem 'quiet_assets'
 end
 
 group :test do
