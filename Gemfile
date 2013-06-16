@@ -5,6 +5,10 @@ gem 'rails', '4.0.0.rc2'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
+gem 'kaminari'
+gem 'validates'
+gem 'state_machine'
+gem 'russian'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -40,11 +44,19 @@ end
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-gem 'unicorn'
+gem 'unicorn-rails'
 
 group :development do
   gem 'capistrano'
   gem 'sqlite3'
+end
+
+group :test do
+end
+
+group :development, :test do
+  gem 'minitest'
+  gem 'factory_girl_rails'
 end
 
 # Use debugger

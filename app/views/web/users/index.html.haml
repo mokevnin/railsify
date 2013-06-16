@@ -1,2 +1,14 @@
-%h1 Web::Users#index
-%p Find me in app/views/web/users/index.html.haml
+%table.table.table-striped
+  %thead
+    %tr
+      %th= ham(:user, :name)
+      %th= ham(:user, :state)
+      %th= ham(:user, :created_at)
+  %tbody
+    - @users.each do |u|
+      %tr
+        %td= link_to u, user_path(u)
+        %td= u.human_state_name
+        %td= l u.created_at
+
+= paginate @users
