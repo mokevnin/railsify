@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, presence: true, email: true
   validates :login, uniqueness: true, presence: true
 
-  state_machine initialize: :new do
+  state_machine initial: :new do
     state :new
     state :active
 
