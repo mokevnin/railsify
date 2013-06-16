@@ -52,6 +52,9 @@ group :development do
 end
 
 group :test do
+  #NOTE for travis-ci
+  gem 'rake'
+  gem 'coveralls', require: false
 end
 
 group :development, :test do

@@ -1,4 +1,10 @@
 ENV["RAILS_ENV"] ||= "test"
+
+if ENV["TRAVIS"]
+  require 'coveralls'
+  Coveralls.wear!
+end
+
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
