@@ -14,6 +14,7 @@ class Web::UsersController < Web::ApplicationController
   def create
     @user = UserRegistrationType.new(params[:user])
     if @user.save
+      f(:success, now: true)
       redirect_to root_path
     else
       render :new

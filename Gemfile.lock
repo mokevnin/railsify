@@ -159,6 +159,8 @@ GEM
       sprockets (~> 2.8)
     sqlite3 (1.3.7)
     state_machine (1.2.0)
+    term-ansicolor (1.2.2)
+      tins (~> 0.8)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
@@ -166,6 +168,7 @@ GEM
     thread_safe (0.1.0)
       atomic
     tilt (1.4.1)
+    tins (0.8.2)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -220,6 +223,7 @@ DEPENDENCIES
   simple_form!
   sqlite3
   state_machine
+  term-ansicolor
   therubyracer
   turbolinks
   twitter-bootstrap-rails

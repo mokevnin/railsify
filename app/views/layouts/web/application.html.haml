@@ -10,11 +10,11 @@
     /[if lt IE 9]
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
     = stylesheet_link_tag "application", :media => "all"
-    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
 
 
   %body
-    .navbar.navbar-fixed-top
+    -# navbar-fixed-top
+    .navbar.navbar-top
       .navbar-inner
         .container
           %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
@@ -27,6 +27,12 @@
               %li= link_to "Link 1", "/path1"
               %li= link_to "Link 2", "/path2"
               %li= link_to "Link 3", "/path3"
+            %ul.nav.pull-right
+              - if signed_in?
+                %li= link_to t('.sign_out'), session_path, method: :delete
+              - else
+                %li= link_to t('.sign_in'), new_session_path
+                %li= link_to t('.sign_up'), new_user_path
 
     .container
 

@@ -1,0 +1,11 @@
+en:
+  flash:
+    web:
+      sessions:
+        create:
+          success: 'sign_in'
+        destroy:
+          success: 'sign out'
+      users:
+        create:
+          success: 'you has been registered'
