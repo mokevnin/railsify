@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  sequence :string, aliases: [:login] do |n|
+  sequence :string do |n|
     "string#{n}"
   end
 

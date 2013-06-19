@@ -1,12 +1,18 @@
 RailsExamples::Application.routes.draw do
   scope module: :web do
-    resources :users, only: [:index, :show]
+    root 'welcome#index'
+
+    resource :session, only: [:new, :create, :destroy]
+    resources :users, only: [:index, :show, :new, :create]
+
+    namespace :account do
+      resources :topics
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,3 +1,11 @@
+GIT
+  remote: git@github.com:plataformatec/simple_form.git
+  revision: 3df45ebff856c4a0d7653fa3b24442a3fe8f6c17
+  specs:
+    simple_form (3.0.0.rc)
+      actionpack (>= 4.0.0.rc1, < 4.1)
+      activemodel (>= 4.0.0.rc1, < 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -29,6 +37,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.9)
+    backports (3.3.2)
     bcrypt-ruby (3.0.1)
     builder (3.1.4)
     capistrano (2.15.4)
@@ -52,6 +61,7 @@ GEM
       rest-client
       simplecov (>= 0.7)
       thor
+    descendants_tracker (0.0.1)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -88,7 +98,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
-    minitest (4.3.3)
+    minitest (4.7.4)
     multi_json (1.7.7)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
@@ -180,6 +190,9 @@ GEM
     validates (0.0.8)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
+    virtus (0.5.5)
+      backports (~> 3.3)
+      descendants_tracker (~> 0.0.1)
     yard (0.8.6.1)
 
 PLATFORMS
@@ -204,6 +217,7 @@ DEPENDENCIES
   russian
   sass-rails (~> 4.0.0.rc1)
   sdoc
+  simple_form!
   sqlite3
   state_machine
   therubyracer
@@ -212,4 +226,5 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn-rails
   validates
+  virtus
   yard

@@ -15,4 +15,19 @@ class Web::UsersControllerTest < ActionController::TestCase
     get :show, @params
     assert_response :success
   end
+
+  test "should get new" do
+    get :new
+    assert_response :success
+  end
+
+  test "should post create" do
+    attrs = attributes_for :user
+
+    post :create, @params.merge(user: attrs)
+    assert_response :redirect
+
+    user = User.find_by_login(attrs[:login])
+    assert user
+  end
 end

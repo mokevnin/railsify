@@ -1,3 +1,5 @@
+ruby '2.0.0'
+
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -9,6 +11,8 @@ gem 'kaminari'
 gem 'validates'
 gem 'state_machine'
 gem 'russian'
+gem 'simple_form', git: 'git@github.com:plataformatec/simple_form.git'
+gem 'virtus'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

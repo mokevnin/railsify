@@ -6,4 +6,4 @@
 * user list on frontend
 * registration
 * facebook registration (omniauth)
-*
+* heroku

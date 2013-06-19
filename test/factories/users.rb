@@ -1,9 +1,11 @@
 FactoryGirl.define do
   factory :user do
-    login
+    login { generate :string }
     email
+    password {generate :string }
+    password_confirmation { password }
 
-    after(:create) do |u|
+    after(:build) do |u|
       u.activate
     end
   end
