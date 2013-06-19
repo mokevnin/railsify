@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  include UserRepository
-
   has_secure_password
 
   has_many :topics, foreign_key: :creator_id
@@ -8,14 +6,11 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, presence: true, email: true
   validates :login, uniqueness: true, presence: true
 
-  state_machine initial: :new do
-    state :new
+  state_machine initial: :active do
     state :active
-
-    event :activate do
-      transition new: :active
-    end
   end
+
+  include UserRepository
 
   def to_s
     login

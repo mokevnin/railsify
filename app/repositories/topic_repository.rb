@@ -1,4 +1,4 @@
-module UserRepository
+module TopicRepository
   extend ActiveSupport::Concern
 
   included do

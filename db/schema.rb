@@ -11,13 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130616185731) do
+ActiveRecord::Schema.define(version: 20130619091231) do
 
   create_table "hubs", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "topic_comments", force: true do |t|
+    t.integer  "creator_id"
+    t.integer  "topic_id"
+    t.string   "state"
+    t.string   "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topic_comments", ["creator_id"], name: "index_topic_comments_on_creator_id"
+  add_index "topic_comments", ["topic_id"], name: "index_topic_comments_on_topic_id"
 
   create_table "topics", force: true do |t|
     t.integer  "creator_id"

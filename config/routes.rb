@@ -9,6 +9,17 @@ RailsExamples::Application.routes.draw do
       resources :topics
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :hubs
+      resources :topics do
+        scope module: :topics do
+          resources :comments
+        end
+      end
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

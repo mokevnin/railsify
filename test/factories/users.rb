@@ -1,12 +1,8 @@
 FactoryGirl.define do
-  factory :user do
+  factory :user, aliases: [:creator] do
     login { generate :string }
     email
     password {generate :string }
     password_confirmation { password }
-
-    after(:build) do |u|
-      u.activate
-    end
   end
 end

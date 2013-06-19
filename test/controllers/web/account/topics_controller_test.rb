@@ -29,7 +29,7 @@ class Web::Account::TopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get create" do
+  test "should post create" do
     attrs = attributes_for :topic
 
     post :create, topic: attrs
@@ -39,7 +39,7 @@ class Web::Account::TopicsControllerTest < ActionController::TestCase
     assert topic
   end
 
-  test "should get update" do
+  test "should patch update" do
     attrs = attributes_for :topic
 
     patch :update, @params.merge(topic: attrs)

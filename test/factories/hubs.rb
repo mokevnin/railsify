@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :hub do
-    name
+    name { generate :string }
   end
 end
