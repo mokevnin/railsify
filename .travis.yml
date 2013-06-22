@@ -1,5 +1,4 @@
 rvm:
   - 2.0.0
 before_script:
-  - gem install bundler
   - cp config/database.yml.sample config/database.yml
