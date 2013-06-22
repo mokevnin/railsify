@@ -138,7 +138,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.23)
-    minitest (4.7.4)
+    minitest (4.7.5)
     multi_json (1.7.7)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
@@ -202,7 +202,7 @@ GEM
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
     slop (3.4.5)
-    spring (0.0.9)
+    spring (0.0.10)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -272,7 +272,7 @@ DEPENDENCIES
   minitest
   omniauth
   pg
-  rails (= 4.0.0.rc2)
+  rails (>= 4.0.0.rc2)
   rake
   ransack!
   russian
