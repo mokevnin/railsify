@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:ernie/ransack.git
+  remote: https://github.com/ernie/ransack.git
   revision: 4078f4fd0ff8b48658e1b69fe8bce0c36933f19c
   branch: rails-4
   specs:
@@ -9,7 +9,7 @@ GIT
       polyamorous (~> 0.6.0)
 
 GIT
-  remote: git@github.com:plataformatec/simple_form.git
+  remote: https://github.com/plataformatec/simple_form.git
   revision: 782db58e27e152a4246fdb2cbc3a1bc7e43b492b
   specs:
     simple_form (3.0.0.rc)
