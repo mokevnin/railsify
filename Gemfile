@@ -14,6 +14,12 @@ gem 'russian'
 gem 'simple_form', git: 'git@github.com:plataformatec/simple_form.git'
 gem 'virtus'
 gem 'term-ansicolor'
+gem 'configus'
+gem 'ransack', git: 'git@github.com:ernie/ransack.git', branch: 'rails-4'
+gem 'omniauth'
+gem 'draper'
+gem 'authority'
+gem 'foreman'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -48,13 +54,14 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-# Use unicorn as the app server
-gem 'unicorn-rails'
+gem 'unicorn'
 
 group :development do
   gem 'capistrano'
   gem 'sqlite3'
-  gem 'quiet_assets'
+  #gem 'quiet_assets' #TODO doesn't work
+  gem 'guard-minitest'
+  gem 'spring'
 end
 
 group :test do

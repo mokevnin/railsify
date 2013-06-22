@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :topic do
-    name { generate :string }
-    body { generate :string }
+    name
+    body
 
     creator
   end

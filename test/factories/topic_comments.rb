@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory 'topic/comment' do
     creator
     topic
-    body { generate :string }
+    body
   end
 end

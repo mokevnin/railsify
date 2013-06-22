@@ -27,3 +27,8 @@ RailsExamples::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 end
+
+#NOTE reload on each request for better development
+ActionDispatch::Reloader.to_prepare do
+  load Rails.root.join('config/configus.rb')
+end

@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :hub do
-    name { generate :string }
+  factory :category do
+    name
   end
 end

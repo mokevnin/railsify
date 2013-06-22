@@ -1,12 +1,27 @@
 RailsExamples::Application.routes.draw do
   scope module: :web do
+    get "/404", :to => "web/errors#not_found"
+    get "/500", :to => "web/errors#internal_server_error"
+
+    post '/auth/developer/callback' => 'social_networks#facebook'
+    get '/auth/:action/failure' => 'social_networks#failure'
+
     root 'welcome#index'
 
     resource :session, only: [:new, :create, :destroy]
-    resources :users, only: [:index, :show, :new, :create]
+    resources :users, only: [:index, :show, :new, :create] do
+      member do
+        get :confirm
+      end
+      scope module: :users do
+        resources :topics, only: [:index]
+      end
+    end
+    resources :hubs, only: [:index]
+    resources :topics
 
     namespace :account do
-      resources :topics
+
     end
   end
 

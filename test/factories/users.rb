@@ -4,5 +4,9 @@ FactoryGirl.define do
     email
     password {generate :string }
     password_confirmation { password }
+
+    after(:build) do |u|
+      u.confirm
+    end
   end
 end

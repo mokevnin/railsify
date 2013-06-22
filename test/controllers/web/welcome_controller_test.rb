@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Web::WelcomeControllerTest < ActionController::TestCase
   setup do
-    @user = create :topic
+    @topic = create :topic
   end
 
   test "should get index" do

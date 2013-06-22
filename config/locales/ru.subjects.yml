@@ -1,0 +1,4 @@
+ru:
+  user_mailer:
+    confirmation_instructions:
+      subject: "Подтверждение регистрации"

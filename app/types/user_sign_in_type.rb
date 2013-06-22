@@ -10,7 +10,7 @@ class UserSignInType
   validate :check_authenticate, if: :email
 
   def user
-    ::User.find_by_email(email.mb_chars.downcase)
+    ::User.active.where(email: email.mb_chars.downcase).first
   end
 
   private

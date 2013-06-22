@@ -1,26 +1,21 @@
-class Web::Account::TopicsController < Web::Account::ApplicationController
+class Web::TopicsController < Web::ApplicationController
   def index
-    @topics = current_user.topics.page(params[:page])
-  end
-
-  def show
-    @topic = current_user.topics.find(params[:id])
+    @q = Topic.ransack(params[:q])
+    @topics = @q.result(distinct: true)
   end
 
   def new
     @topic = current_user.topics.build
   end
 
-  def edit
-    @topic = current_user.topics.find(params[:id])
-  end
-
   def create
-    @topic = AccountTopicType.new(params[:topic])
-    @topic.creator = current_user
-    if @topic.save
-      redirect_to action: :index
+    topic = AccountTopicType.new(params[:topic])
+    topic.creator = current_user
+    if topic.save
+      f(:success)
+      redirect_to topic_path(topic)
     else
+      f(:error)
       render :new
     end
   end

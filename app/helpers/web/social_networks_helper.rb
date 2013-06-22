@@ -1,0 +1,2 @@
+module Web::SocialNetworksHelper
+end

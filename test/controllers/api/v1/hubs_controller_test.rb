@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Api::V1::HubsControllerTest < ActionController::TestCase
   setup do
-    @hub = create :hub
+    @hub = create 'category/hub'
   end
 
   test "should get index" do
