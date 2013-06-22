@@ -27,7 +27,11 @@ class User < ActiveRecord::Base
   include UserRepository
 
   def generate_confirmation_token
-    self.confirmation_token = SecureRandom.base64(15).tr('+/=lIO0', 'pqrsxyz')
+    self.confirmation_token = Token.generate
+  end
+
+  def generate_reset_password_token
+    self.reset_password_token = Token.generate
   end
 
   def to_s

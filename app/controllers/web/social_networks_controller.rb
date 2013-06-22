@@ -2,7 +2,7 @@ class Web::SocialNetworksController < ApplicationController
 
   def facebook
     auth_hash = request.env['omniauth.auth']
-    authorization = User::Authorization.where(auth_hash.slice(:provider, :uid)).first_or_initialize
+    authorization = User::Authorization.where(auth_hash.extract(:provider, :uid)).first_or_initialize
 
     if authorization.persisted?
       if authorization.user.inactive?
@@ -14,7 +14,7 @@ class Web::SocialNetworksController < ApplicationController
       sign_in authorization.user
       f(:success)
     else
-      user = User.where(auth_hash[:info].slice(:email)).first_or_initialize
+      user = User.where(auth_hash[:info].extract(:email)).first_or_initialize
 
       if user.inactive?
         f(:error)

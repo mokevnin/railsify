@@ -1,0 +1,2 @@
+module Web::PasswordsHelper
+end

@@ -9,8 +9,10 @@ RailsExamples::Application.routes.draw do
     root 'welcome#index'
 
     resource :session, only: [:new, :create, :destroy]
+    resource :password
     resources :users, only: [:index, :show, :new, :create] do
       member do
+        #NOTE get потому что из письма
         get :confirm
       end
       scope module: :users do

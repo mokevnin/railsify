@@ -7,7 +7,7 @@ class Web::SocialNetworksControllerTest < ActionController::TestCase
   end
 
   test "should get authorization with facebook" do
-    @user.authorizations.create(@auth_hash.slice(:uid, :provider))
+    @user.authorizations.create(@auth_hash.extract(:uid, :provider))
 
     request.env['omniauth.auth'] = @auth_hash
 
@@ -19,7 +19,7 @@ class Web::SocialNetworksControllerTest < ActionController::TestCase
 
   test "should fail authorization with facebook" do
     @user.deactivate
-    @user.authorizations.create(@auth_hash.slice(:uid, :provider))
+    @user.authorizations.create(@auth_hash.extract(:uid, :provider))
 
     request.env['omniauth.auth'] = @auth_hash
 

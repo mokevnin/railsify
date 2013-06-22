@@ -11,6 +11,10 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :confirmed_at
       t.datetime :confirmation_sent_at
 
+      ## Recoverable
+      t.string   :reset_password_token
+      t.datetime :reset_password_sent_at
+
       ## Trackable
       t.integer  :sign_in_count
       t.datetime :current_sign_in_at

@@ -25,10 +25,9 @@ class Web::UsersController < Web::ApplicationController
     end
   end
 
-
   def confirm
-    token = User.where(params.slice(:confirmation_token)).first!
-    user = token.user
+    return redirect_to(root_path) unless params[:confirmation_token]
+    user = User.where(params.extract(:id, :confirmation_token)).first!
     if user.confirm
       sign_in user
       f(:success)

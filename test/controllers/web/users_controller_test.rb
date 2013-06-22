@@ -24,10 +24,13 @@ class Web::UsersControllerTest < ActionController::TestCase
   test "should post create" do
     attrs = attributes_for :user
 
-    post :create, @params.merge(user: attrs)
+    post :create, user: attrs
     assert_response :redirect
 
-    user = User.find_by_login(attrs[:login])
+    user = User.where(attrs.extract(:email)).first
     assert user
+    assert_not_nil @user.reset_password_token?
+    assert user.waiting_confirmation?
+    assert user.confirmation_sent_at?
   end
 end

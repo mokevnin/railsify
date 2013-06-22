@@ -1,0 +1,4 @@
+= simple_form_for @user, url: password_path(params.extract(:reset_password_token)) do |f|
+  = f.input :password
+  = f.input :password_confirmation
+  = f.submit

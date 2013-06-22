@@ -19,7 +19,7 @@ class Web::TopicsControllerTest < ActionController::TestCase
     post :create, topic: attrs
     assert_response :redirect
 
-    topic = Topic.where(attrs.slice(:body))
+    topic = Topic.where(attrs.extract(:body))
     assert topic
   end
 
