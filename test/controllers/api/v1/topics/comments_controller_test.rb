@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class Api::V1::Topics::CommentsControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
   setup do
     @comment = create 'topic/comment'
     @topic = @comment.topic
@@ -19,7 +16,7 @@ class Api::V1::Topics::CommentsControllerTest < ActionController::TestCase
     post :create, @params.merge(topic_comment: attrs, format: :json)
     assert_response :created
 
-    comment = @topic.comments.find_by_body(attrs[:body])
+    comment = @topic.comments.where(attrs.extract(:body))
     assert comment
   end
 end
