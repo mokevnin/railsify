@@ -17,6 +17,7 @@ RailsExamples::Application.routes.draw do
       end
       scope module: :users do
         resources :topics, only: [:index]
+        resources :comments, only: [:index]
       end
     end
     resources :hubs, only: [:index]

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :authorizations, dependent: :destroy
   has_many :topics, foreign_key: :creator_id, dependent: :restrict_with_exception
-  has_many :topic_comments, dependent: :restrict_with_exception
+  has_many :topic_comments, class_name: 'Topic::Comment', dependent: :restrict_with_exception
 
   validates :email, uniqueness: true, presence: true, email: true
   validates :login, uniqueness: true, presence: true
