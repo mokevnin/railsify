@@ -3,7 +3,7 @@ require 'test_helper'
 class Web::UsersControllerTest < ActionController::TestCase
   setup do
     @user = create :user
-    @params = {id: @user.id}
+    @params = {id: @user.login}
   end
 
   test "should get index" do
