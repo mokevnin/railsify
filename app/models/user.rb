@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
     before_transition waiting_confirmation: :active, do: :set_confirmed_at
   end
 
+  #NOTE @see topic.rb
   include UserRepository
 
   def generate_confirmation_token

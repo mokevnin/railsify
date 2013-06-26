@@ -5,6 +5,7 @@ module FlashHelper
     scope << params[:action]
 
     msg = I18n.t(key, scope: scope)
+    #NOTE мегаудобно отслеживать отсутствующие ключи
     Rails.logger.debug(Term::ANSIColor.green("flash: #{msg}"))
     if options[:now]
       flash.now[key] = msg
