@@ -9,6 +9,6 @@ module ApplicationHelper
     options = {}
     options[:class] = :active if current_page?(path)
     link = link_to(name, path, link_options)
-    content_tag(:li, link, options)
+    content_tag(tag, link, options)
   end
 end
