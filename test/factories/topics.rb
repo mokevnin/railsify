@@ -6,5 +6,13 @@ FactoryGirl.define do
     body
 
     creator
+
+    after(:build) do |t|
+      t.category_hubs << create('category/hub')
+    end
+
+    after(:create) do |t|
+      t.publish
+    end
   end
 end

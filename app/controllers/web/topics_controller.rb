@@ -1,7 +1,11 @@
 class Web::TopicsController < Web::ApplicationController
   def index
-    @q = Topic.ransack(params[:q])
+    @q = Topic.published.ransack(params[:q])
     @topics = @q.result(distinct: true)
+  end
+
+  def show
+
   end
 
   def new
@@ -9,7 +13,7 @@ class Web::TopicsController < Web::ApplicationController
   end
 
   def create
-    topic = AccountTopicType.new(params[:topic])
+    topic = TopicType.new(params[:topic])
     topic.creator = current_user
     if topic.save
       f(:success)
@@ -20,12 +24,18 @@ class Web::TopicsController < Web::ApplicationController
     end
   end
 
+  def edit
+    @topic = current_user.topics.find(params[:id])
+  end
+
   def update
     @topic = current_user.topics.find(params[:id])
-    @topic = @topic.becomes(AccountTopicType)
+    @topic = @topic.becomes(TopicType)
     if @topic.update_attributes(params[:topic])
-      redirect_to action: :index
+      f(:success)
+      redirect_to edit_topic_path(@topic)
     else
+      f(:error)
       render :new
     end
   end

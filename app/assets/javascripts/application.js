@@ -14,4 +14,9 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
-//= require_tree .
+//= require chosen-jquery
+//= require_self
+
+$(function(){
+  $('select.extra_select').chosen();
+});

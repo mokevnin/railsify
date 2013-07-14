@@ -7,6 +7,14 @@ end
 
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require 'wrong/adapters/minitest'
+
+require 'capybara/rails'
+
+Dir[File.expand_path('../support/sections/*.rb', __FILE__)].each { |f| require f }
+Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }
+
+FactoryGirl.reload
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
@@ -21,4 +29,9 @@ class ActiveSupport::TestCase
   # fixtures :all
 
   # Add more helper methods to be used by all tests here...
+end
+
+class ActionDispatch::IntegrationTest
+  # Make the Capybara DSL available in all integration tests
+  include Capybara::DSL
 end

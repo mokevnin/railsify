@@ -8,11 +8,13 @@
       %a.brand(href="/") Habrahabr
       .container.nav-collapse
         %ul.nav
-          %li= link_to "Link 1", "/path1"
-          %li= link_to "Link 2", "/path2"
-          %li= link_to "Link 3", "/path3"
+          = item :li, t('.menu.main'), root_path
+          = item :li, t('.menu.topics'), topics_path
+          = item :li, t('.menu.hubs'), hubs_path
+          = item :li, t('.menu.users'), users_path
         %ul.nav.pull-right
           - if signed_in?
+            %li= link_to current_user, user_path(current_user.login)
             %li= link_to t('.sign_out'), session_path, method: :delete
           - else
             %li= link_to t('.sign_in'), new_session_path

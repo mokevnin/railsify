@@ -1,2 +1,3 @@
-%h1 Web::Topics#index
-%p Find me in app/views/web/topics/index.html.haml
+- @topics.each do |t|
+  = link_to t, topic_path(t)
+  %br

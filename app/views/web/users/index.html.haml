@@ -7,7 +7,7 @@
   %tbody
     - @users.each do |u|
       %tr
-        %td= link_to u, user_path(u)
+        %td= link_to u, user_path(u.login)
         %td= u.human_state_name
         %td= l u.created_at
 

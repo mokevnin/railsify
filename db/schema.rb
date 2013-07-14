@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130621110130) do
+ActiveRecord::Schema.define(version: 20130714090754) do
 
   create_table "categories", force: true do |t|
     t.string   "state"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 20130621110130) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "topic_hubs", force: true do |t|
+    t.integer  "topic_id"
+    t.integer  "category_hub_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topic_hubs", ["category_hub_id"], name: "index_topic_hubs_on_category_hub_id"
+  add_index "topic_hubs", ["topic_id"], name: "index_topic_hubs_on_topic_id"
 
   create_table "topics", force: true do |t|
     t.integer  "creator_id"

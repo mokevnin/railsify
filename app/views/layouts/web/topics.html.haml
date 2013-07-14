@@ -7,7 +7,6 @@
     .container
       .row
         .span9
-          = render 'layouts/web/shared/main_menu'
           = if signed_in?
             = link_to t('.new_topic'), new_topic_path
           = bootstrap_flash

@@ -14,7 +14,7 @@ class Web::SocialNetworksControllerTest < ActionController::TestCase
     get :facebook
     assert_response :redirect
 
-    assert signed_in?
+    assert { signed_in? }
   end
 
   test "should fail authorization with facebook" do
@@ -26,7 +26,7 @@ class Web::SocialNetworksControllerTest < ActionController::TestCase
     get :facebook
     assert_response :redirect
 
-    assert !signed_in?
+    assert { !signed_in? }
   end
 
   test "should get failure" do

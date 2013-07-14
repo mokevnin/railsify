@@ -17,6 +17,6 @@ class Api::V1::Topics::CommentsControllerTest < ActionController::TestCase
     assert_response :created
 
     comment = @topic.comments.where(attrs.extract(:body))
-    assert comment
+    assert { comment }
   end
 end
