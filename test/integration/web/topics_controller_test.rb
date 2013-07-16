@@ -34,6 +34,9 @@ class Web::TopicsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "#destroy" do
-    p = TopicsPage.visit
+    p = UserTopicsPage.visit(user_id: @user.login)
+    p.click_link('delete')
+
+    assert { !Topic.exists?(@topic.id) }
   end
 end

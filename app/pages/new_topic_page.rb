@@ -7,7 +7,7 @@ class NewTopicPage < ApplicationPage
     [:name, :body].each do |name|
       topic_fields.send(name).set t.send(name)
     end
-    topic_fields.category_hub_ids.select t.category_hubs.first.name
+    topic_fields.category_hubs_list.first.click
 
     topic_fields.submit.click
   end

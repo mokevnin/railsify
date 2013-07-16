@@ -1,3 +1,3 @@
 class UserTopicsPage < ApplicationPage
-  set_url "/users/{id}/topics"
+  set_url "/users/{user_id}/topics"
 end

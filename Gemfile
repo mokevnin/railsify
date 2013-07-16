@@ -34,11 +34,10 @@ gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem "chosen-rails"
+gem 'jquery-rails'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -73,6 +72,10 @@ group :test do
   gem 'capybara'
   gem 'site_prism'
   gem 'wrong'
+
+  gem 'poltergeist'
+  gem 'selenium-webdriver'
+  gem 'launchy'
 end
 
 group :development, :test do

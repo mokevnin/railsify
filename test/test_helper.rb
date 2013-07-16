@@ -6,10 +6,40 @@ if ENV["TRAVIS"]
 end
 
 require File.expand_path('../../config/environment', __FILE__)
+
+#TODO нужно только для selenium. Правильно перенести.
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection
+    @@shared_connection || retrieve_connection
+  end
+end
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+
+module SitePrism
+  class Page
+
+    def wait_for_ajax
+      Timeout.timeout(Capybara.default_wait_time) do
+        active = page.evaluate_script('jQuery.active') until active == 0
+      end
+    end
+
+  end
+end
+
 require 'rails/test_help'
 require 'wrong/adapters/minitest'
 
+require 'capybara/poltergeist'
 require 'capybara/rails'
+
+Capybara.configure do |c|
+  #c.javascript_driver = :webkit
+  c.current_driver = :poltergeist
+end
 
 Dir[File.expand_path('../support/sections/*.rb', __FILE__)].each { |f| require f }
 Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }

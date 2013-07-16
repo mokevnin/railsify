@@ -1,3 +1,5 @@
-- @topics.each do |t|
-  = link_to t, topic_path(t)
-  %br
+%table#topics
+  - @topics.each do |t|
+    %tr
+      %td= link_to t, topic_path(t)
+      %td= link_to 'delete', topic_path(t), method: :delete, data: {confirm: true}

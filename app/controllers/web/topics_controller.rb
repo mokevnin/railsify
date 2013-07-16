@@ -44,6 +44,6 @@ class Web::TopicsController < Web::ApplicationController
     @topic = current_user.topics.find(params[:id])
     @topic.destroy
 
-    redirect_to account_topics_path
+    redirect_to user_topics_path(current_user.login)
   end
 end

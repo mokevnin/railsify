@@ -9,7 +9,7 @@ class Web::Users::TopicsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "#index" do
-    UserTopicsPage.visit(id: @user.login)
+    UserTopicsPage.visit(user_id: @user.login)
   end
 
 end

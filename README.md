@@ -12,3 +12,11 @@
 == examples
 * .sample
 * controllers structure
+* presenters
+* repositories
+* capybara with page objects
+* wrong
+* serializers
+* custom inputs
+* types
+* guard
