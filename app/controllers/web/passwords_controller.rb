@@ -28,7 +28,7 @@ class Web::PasswordsController < Web::ApplicationController
     return redirect_to(root_path) unless params[:reset_password_token]
     user = User.where(params.slice(:reset_password_token)).first!
     @user = user.becomes(UserPasswordEditType)
-    if @user.update_attributes(params[:user])
+    if @user.update(params[:user])
       f(:success)
       redirect_to root_path
     else

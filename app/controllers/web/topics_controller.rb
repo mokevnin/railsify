@@ -31,7 +31,7 @@ class Web::TopicsController < Web::ApplicationController
   def update
     @topic = current_user.topics.find(params[:id])
     @topic = @topic.becomes(TopicType)
-    if @topic.update_attributes(params[:topic])
+    if @topic.update(params[:topic])
       f(:success)
       redirect_to edit_topic_path(@topic)
     else
