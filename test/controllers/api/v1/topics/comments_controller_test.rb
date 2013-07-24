@@ -5,12 +5,17 @@ class Api::V1::Topics::CommentsControllerTest < ActionController::TestCase
     @comment = create 'topic/comment'
     @topic = @comment.topic
     @user = @topic.creator
-    @params = {topic_id: @topic.id}
+    @params = {topic_id: @topic.id, format: :json}
 
     sign_in @user
   end
 
-  test "should post create" do
+  test "#index" do
+    get :index, @params
+    assert_response :success
+  end
+
+  test "#create" do
     attrs = attributes_for 'topic/comment'
 
     post :create, @params.merge(topic_comment: attrs, format: :json)

@@ -20,6 +20,7 @@ gem 'omniauth'
 gem 'draper'
 gem 'authority'
 gem 'foreman'
+gem 'ancestry'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -34,6 +35,7 @@ gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem "chosen-rails"
+gem 'compass-rails', github: 'milgner/compass-rails', branch: 'rails4'
 gem 'jquery-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

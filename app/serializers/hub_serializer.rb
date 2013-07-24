@@ -1,3 +1,3 @@
-class HubSerializer < ActiveModel::Serializer
+class HubSerializer < ApplicationSerializer
   attributes :name
 end
