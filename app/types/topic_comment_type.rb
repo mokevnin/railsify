@@ -1,5 +1,5 @@
 class TopicCommentType < Topic::Comment
-  include BaseType
+  include ApplicationType
 
   permit :body
 end
