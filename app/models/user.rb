@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_secure_password
+  has_secure_password validations: false
 
   has_many :authorizations, dependent: :destroy
   has_many :topics, foreign_key: :creator_id, dependent: :restrict_with_exception
@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true, presence: true, email: true
   validates :login, uniqueness: true, presence: true
+  validates :password_digest, presence: true
 
   state_machine initial: :waiting_confirmation do
     state :waiting_confirmation

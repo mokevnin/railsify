@@ -1,5 +1,5 @@
 module ApplicationHelper
-  include CustomUrlHelper
+  include Concerns::CustomUrlHelper
 
   def ham(model, attribute)
     model.to_s.classify.constantize.human_attribute_name(attribute)

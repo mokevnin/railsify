@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  include AuthHelper
-  include FlashHelper
+  include Concerns::AuthManagment
+  include Concerns::FlashHelper
 
   helper_method :current_user, :signed_in?
 

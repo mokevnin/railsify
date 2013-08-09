@@ -1,5 +1,5 @@
 class TopicType < Topic
-  include BaseType
+  include ApplicationType
 
   permit :name, :body, :state_event, category_hub_ids: []
 end

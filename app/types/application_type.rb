@@ -1,4 +1,4 @@
-module BaseType
+module ApplicationType
   extend ActiveSupport::Concern
 
   module ClassMethods

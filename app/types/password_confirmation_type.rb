@@ -1,5 +1,5 @@
 class PasswordConfirmationType
-  include BaseTypeWithoutActiveRecord
+  include ApplicationTypeWithoutActiveRecord
 
   attribute :email, String
 

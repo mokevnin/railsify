@@ -1,5 +1,5 @@
 class UserPasswordEditType < User
-  include BaseType
+  include ApplicationType
 
   permit :password, :password_confirmation
 

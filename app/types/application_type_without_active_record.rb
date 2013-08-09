@@ -1,4 +1,4 @@
-module BaseTypeWithoutActiveRecord
+module ApplicationTypeWithoutActiveRecord
   extend ActiveSupport::Concern
 
   included do

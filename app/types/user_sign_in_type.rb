@@ -1,5 +1,5 @@
 class UserSignInType
-  include BaseTypeWithoutActiveRecord
+  include ApplicationTypeWithoutActiveRecord
 
   attribute :email, String
   attribute :password, String
