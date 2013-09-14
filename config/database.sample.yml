@@ -1,23 +1,18 @@
-development:
+setup: &setup
   adapter: postgresql
-  encoding: unicode
-  database: rails-examples_development
-  pool: 5
   username: postgres
   password:
+  encoding: unicode
+
+development:
+  <<: *setup
+  database: rails-examples_development
 
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *setup
   database: rails-examples_test
-  pool: 5
-  username: postgres
-  password:
-
+  
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: rails-examples_production
-  pool: 5
+  <<: *setup
   username: rails-examples
-  password:
+  database: rails-examples_production
