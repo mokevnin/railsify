@@ -1,14 +1,17 @@
-%table.table.table-striped
-  %thead
-    %tr
-      %th= ham(:user, :name)
-      %th= ham(:user, :state)
-      %th= ham(:user, :created_at)
-  %tbody
-    - @users.each do |u|
+- if @users.empty?
+  = t('.has_no_users')
+- else
+  %table.table.table-striped
+    %thead
       %tr
-        %td= link_to u, user_path(u.login)
-        %td= u.human_state_name
-        %td= l u.created_at
+        %th= han(:user, :name)
+        %th= han(:user, :state)
+        %th= han(:user, :created_at)
+    %tbody
+      - @users.each do |u|
+        %tr
+          %td= link_to u, user_path(u.login)
+          %td= u.human_state_name
+          %td= l u.created_at, format: :long
 
-= paginate @users
+  = paginate @users

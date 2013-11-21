@@ -1,2 +1,11 @@
-= @hubs.each do |h|
-  = link_to h, topics_path(hub_id_eq: h)
+%table.table
+  %thead
+    %tr
+      %th= sort_link(@q, :topics)
+      %th= han('category/hub', :topics_count)
+  %tbody
+    - @hubs.each do |h|
+      %tr
+        %td
+          %b= link_to h, topics_path(q: {category_hubs_id_eq: h})
+        %td= h.topics.count

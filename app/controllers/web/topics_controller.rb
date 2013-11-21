@@ -1,7 +1,7 @@
 class Web::TopicsController < Web::ApplicationController
   def index
-    @q = Topic.published.ransack(params[:q])
-    @topics = @q.result(distinct: true)
+    @q = Topic.published.ransack(params[:q] || {})
+    @topics = @q.result(distinct: true).page(params[:page])
   end
 
   def show

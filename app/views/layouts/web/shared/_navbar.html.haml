@@ -1,21 +1,19 @@
-.navbar.navbar-top
-  .navbar-inner
-    .container
-      %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.brand(href="/") Habrahabr
-      .container.nav-collapse
-        %ul.nav
-          = item :li, t('.menu.main'), root_path
-          = item :li, t('.menu.topics'), topics_path
-          = item :li, t('.menu.hubs'), hubs_path
-          = item :li, t('.menu.users'), users_path
-        %ul.nav.pull-right
-          - if signed_in?
-            %li= link_to current_user, user_path(current_user.login)
-            %li= link_to t('.sign_out'), session_path, method: :delete
-          - else
-            %li= link_to t('.sign_in'), new_session_path
-            %li= link_to t('.sign_up'), new_user_path
+.navbar.navbar-default
+  .navbar-header
+    %button.navbar-toggle(data-target=".navbar-collapse" data-toggle="collapse")
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand(href="/") Habrahabr
+  .navbar-collapse.collapse
+    %ul.nav.navbar-nav
+      = item :li, t('.menu.topics'), topics_path
+      = item :li, t('.menu.hubs'), hubs_path
+      = item :li, t('.menu.users'), users_path
+    %ul.nav.navbar-nav.pull-right
+      - if signed_in?
+        %li= link_to current_user, user_path(current_user.login)
+        %li= link_to t('.sign_out'), session_path, method: :delete
+      - else
+        %li= link_to t('.sign_in'), new_session_path
+        %li= link_to t('.sign_up'), new_user_path

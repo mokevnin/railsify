@@ -1,4 +1,8 @@
 RailsExamples::Application.routes.draw do
+  if Rails.env.development?
+    mount UserMailView => 'user_mail_view'
+  end
+
   scope module: :web do
     get "/404", :to => "web/errors#not_found"
     get "/500", :to => "web/errors#internal_server_error"

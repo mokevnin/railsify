@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require anjlab/datepicker
+//= require anjlab/timepicker
 //= require chosen-jquery
 //= require_self
 

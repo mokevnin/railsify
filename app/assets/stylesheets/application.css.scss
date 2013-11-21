@@ -9,6 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_tree .
- *= require chosen
  *= require_self
  */
+
+@import 'twitter/bootstrap';
+
+@import 'anjlab/datepicker';
+@import 'anjlab/timepicker';
