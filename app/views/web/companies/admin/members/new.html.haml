@@ -1,0 +1,7 @@
+= simple_form_for @course_member, url: company_admin_members_path(@course_member),
+  html: {class: 'form-horizontal'} do |f|
+  = f.association :course, as: :chosen_select
+  = f.association :user, as: :chosen_select
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'

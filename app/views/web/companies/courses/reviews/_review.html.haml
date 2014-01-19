@@ -1,0 +1,5 @@
+%div{ id: "review#{review.id}" }
+  %p
+    %b= review.creator
+    %span= l review.created_at, format: :short
+  %p= review.body

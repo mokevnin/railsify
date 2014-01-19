@@ -1,0 +1,33 @@
+.well
+  = simple_form_for @search, default_search_form_options(url: admin_users_path) do |f|
+    = f.input :email_cont, placeholder: t(".email"), label: false
+    = f.input :last_name_cont, placeholder: t(".lastname"), label: false
+    = f.input :first_name_cont, placeholder: t(".firstname"), label: false
+    = f.input :state_in, as: :chosen_select, collection: User.state_machine.states.map { |s| [s.human_name, s.name] }, input_html: { data: { placeholder: t(".state") }}, label: false
+
+    = f.button :submit
+
+= paginate @users
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= sort_link(@search, :id)
+      %th= sort_link(@search, :email)
+      %th= sort_link(@search, :state)
+      %th= sort_link(@search, :lastname)
+      %th= sort_link(@search, :firstname)
+      %th= sort_link(@search, :created_at)
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= user.email
+        %td= user.state
+        %td= user.last_name
+        %td= user.first_name
+        %td= l user.created_at
+        %td= link_to t(".edit"), edit_admin_user_path(user)
+
+= paginate @users

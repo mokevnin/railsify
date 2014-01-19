@@ -1,0 +1,19 @@
+%p.pull-right
+  = link_to 'attendants.csv', api_company_lesson_attendants_path(resource_lesson, format: 'csv'), id: "attendants_list"
+
+%table.table
+  %tr
+    %th= t('.attendant')
+    %th= han(:user, 'full_name')
+  - resource_lesson.course.members.each do |m|
+    %tr
+      %td
+        .make-switch.switch-small
+          %input{{type: 'checkbox'}.merge(@attendants.include?(m.id) ? {checked: 'checked'} : {})}
+          %div{style: 'display: none;'}
+            = link_to :on, api_company_lesson_attendants_path(@lesson, member_id: m.id, format: :json),
+              remote: true, method: :post, class: 'on'
+            = link_to :off, remove_api_company_lesson_attendants_path(@lesson, member_id: m.id, format: :json),
+              remote: true, method: :delete, class: 'off'
+      %td
+        = m.full_name

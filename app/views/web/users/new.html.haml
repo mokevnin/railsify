@@ -1,6 +1,9 @@
-= simple_form_for @user do |f|
+= simple_form_for @user, url: users_path(params.extract(:from)),
+  html: { class: 'form-horizontal'} do |f|
   = f.input :email
-  = f.input :login
+  = f.input :first_name
+  = f.input :last_name
   = f.input :password
-  = f.input :password_confirmation
+  = f.input :accept_agreement, as: :boolean
+
   = f.button :submit

@@ -1,0 +1,21 @@
+%header.navbar.navbar-default
+  .navbar-header
+    %button.navbar-toggle{"type" => "button", "data-toggle" => "collapse",
+      "data-target" => ".navbar-collapse"}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand{:href => company_admin_root_path} admin
+  .navbar-collapse.collapse
+    %ul.nav.navbar-nav
+      - if current_user.can_update?(Course, for: resource_company)
+        = menu_item t('.courses'), company_admin_courses_path
+      = menu_item t('.members'), company_admin_members_path
+      - if current_user.can_update?(resource_company)
+        = menu_item t('.teachers'), company_admin_teachers_path
+        = menu_item t('.news'), company_admin_news_index_path
+        = menu_item t('.pages'), company_admin_pages_path
+        = menu_item t('.managers'), company_admin_managers_path
+
+    %ul.nav.navbar-nav.pull-right
+      = render partial: 'layouts/web/shared/user_menu', locals: {redirect_to: company_root_path}

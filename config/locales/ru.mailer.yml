@@ -1,0 +1,10 @@
+ru:
+  user_mailer:
+    join_to_course:
+      subject: регистрация на курс
+    confirmation_instructions:
+      subject: Подтверждение регистрации
+    remind_password:
+      subject: Восстановление пароля
+    daily_digest:
+      subject: Расписание лекций ваших курсов на сегодня

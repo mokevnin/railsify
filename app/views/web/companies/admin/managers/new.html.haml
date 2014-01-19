@@ -1,0 +1,6 @@
+= simple_form_for @company_manager, url: company_admin_managers_path,
+  html: {class: 'form-horizontal'} do |f|
+  = f.association :user, as: :chosen_select, collection: User.without_company_managers(resource_company)
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'

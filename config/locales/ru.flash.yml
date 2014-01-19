@@ -1,0 +1,122 @@
+ru:
+  flash:
+    base:
+      create:
+        success: Создание выполнено успешно
+        error: Создание не выполнено
+      update:
+        success: Обновление выполнено успешно
+        error: Обновление не выполнено
+      destroy:
+        success: Удаление выполнено успешно
+        error: Удаление не выполнено
+    web:
+      social_networks:
+        facebook:
+          success: Вы авторизовались с помощью facebook аккаунта
+      users:
+        create:
+          success: На указанный Email отправлено письмо со ссылкой на активацию аккаунта
+          error:   Пожалуйста, заполните все обязательные поля
+        confirm:
+          success: Ваш аккаунт успешно активирован!
+
+        passwords:
+          update:
+            error: Пожалуйста, заполните все обязательные поля
+            success: Пароль успешно обновлен
+          edit:
+            error: Ссылка не действительна
+            success: Введите новый пароль
+
+      sessions:
+        create:
+          success: Вы вошли на сайт
+          error:   Аутентификация не удалась. Проверьте логин/пароль
+
+        destroy:
+          success: Вы вышли
+
+      remind_passwords:
+        create:
+          success: Письмо с инструкцией по восстановлению пароля успешно отправлено на указанный адрес
+          error: Пользователь с данным email не найден
+
+      account:
+        profiles:
+          update:
+            success: Профиль обновлен
+        companies:
+          update:
+            success: Компания изменена
+        passwords:
+          update:
+            error: Пожалуйста, заполните все обязательные поля
+            success: Пароль успешно обновлен
+
+      companies:
+        admin:
+          mailing_lists:
+            create:
+              success: Рассылка создана
+            update:
+              success: Рассылка обновлена
+          pages:
+            update:
+              success: Страница обновлена
+          teachers:
+            create:
+              success: Преподаватель добавлен
+          offline_courses:
+            create:
+              success: Курс добавлен
+              error: Курс не создан. Заполните обязательные поля.
+            update:
+              success: Курс изменен
+              error: Курс не обновлен
+        courses:
+          members:
+            create:
+              success: Вы записались на курс
+            destroy:
+              success: Вы покинули курс
+          reviews:
+            create:
+              success: Отзыв отправлен на модерацию
+        create:
+          success: Компания добавлена
+          error:   Не удалось добавить компанию, есть ошибки в заполнении форм
+
+      courses:
+        create:
+          success: Курс добавлен
+          error:   Не удалось добавить курс, есть ошибки в заполнении форм
+
+
+      admin:
+        users:
+          create:
+            success: Пользовтаель добавлен
+            error:   Не удалось добавить пользователя, есть ошибки в заполнении форм
+
+          update:
+            success: Пользователь изменен
+            error:   Не удалось изменить пользователя, есть ошибки в заполнении форм
+
+        courses:
+          create:
+            success: Курс добавлен
+            error:   Не удалось добавить курс, есть ошибки в заполнении форм
+
+          update:
+            success: Курс изменен
+            error:   Не удалось изменить курс, есть ошибки в заполнении форм
+
+        companies:
+          create:
+            success: Компания добавлена
+            error:   Не удалось добавить компанию, есть ошибки в заполнении форм
+
+          update:
+            success: Компания изменена
+            error:   Не удалось изменить компанию, есть ошибки в заполнении форм

@@ -1,0 +1,47 @@
+.well.well-default
+  = simple_form_for :q, default_search_form_options do |f|
+    = f.input :state_eq, collection: model_states('company/teacher'), label_method: :human_name, value_method: :name,
+      include_blank: t('.select_state')
+
+    = f.button :submit
+-# .text-right
+-#   = button_to t('.add_teacher'), new_company_admin_teacher_path, method: 'get', class: 'btn'
+
+- if @teachers.empty?
+  = t('.has_no_teachers')
+- else
+  %table#teachers.table.table-striped
+    %thead
+      %tr
+        %th= han('company/teacher', :state)
+        %th= sort_link(@q, :full_name)
+        %th= sort_link(@q, :email)
+        %th= han(:user, :teach_courses)
+        %th
+    %tbody
+      - @teachers.each do |teacher|
+        %tr.teacher
+          %td
+            - if teacher.state_events.empty?
+              = teacher.human_state_name
+            - else
+              .btn-group.event-switcher
+                .button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                  = teacher.human_state_name
+                  %span.caret
+                %ul.dropdown-menu
+                  - teacher.state_events.each do |event|
+                    - if event
+                      %li= link_to hen('company/teacher', event), fire_event_api_company_teacher_path(teacher, event: event, format: :json),
+                        method: :patch, class: "switch-state",
+                        remote: true
+          %td= link_to teacher.full_name, company_teacher_path(teacher)
+          %td= teacher.email
+          %td= link_to_if teacher.courses.any?, teacher.courses.count, company_admin_courses_path(q: {course_teacher_id_eq: teacher.id})
+          %td
+            .btn-toolbar.pull-right{role: 'toolbar'}
+              .btn-group.btn-group-xs
+                = link_to edit_company_admin_teacher_path(teacher), class: "btn btn-default" do
+                  %span.glyphicon.glyphicon-pencil
+
+= paginate @teachers

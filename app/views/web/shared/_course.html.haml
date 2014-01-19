@@ -1,0 +1,18 @@
+.media
+  .pull-left
+    = image_tag course.image.thumb
+  .media-body
+    %h4.media-heading
+      = link_to course, company_course_url(course, subdomain: course.company.login)
+    %table.course-block
+      - if course.nearest_lesson_datetime
+        %tr
+          %td.text-muted #{han(:course, :nearest_lesson_datetime)}:
+          %td.padding10= l course.nearest_lesson_datetime, format: :short
+      %tr
+        %td.text-muted #{han(:course, :location)}:
+        %td.padding10= course.location
+      %tr
+        %td.text-muted #{t('course.participation')}:
+        %td.padding10= course_subscription_state(course)
+  != course.short_description

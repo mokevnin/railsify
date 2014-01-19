@@ -1,0 +1,74 @@
+ru:
+  activerecord:
+    state_machines:
+      states:
+        published: Опубликовано
+        archived: Архивировано
+        active: активно
+        inactive: неактивно
+      events:
+        publish: Опубликовать
+        unpublish: Снять с публикации
+        activate: Активировать
+        start: Начать
+        finish: Завершить
+        archive: Архивировать
+
+      mailing_list:
+        state:
+          states:
+            unprocessed: Не отправлена
+            processed: Отправлена
+          events:
+            process: Отправить
+      course_member:
+        course_state:
+          states:
+            finished: Окончил
+            started: Обучается
+      course/review:
+        state:
+          states:
+            on_moderate: На модерации
+          events:
+            to_moderate: На модерацию
+      course:
+        course_state:
+          states:
+            finished: Курс окончен
+            not_finished: Курс не закончен
+        subscription_state:
+          states:
+            allowed: Регистрация открыта
+            denied: Регистрация закрыта
+          events:
+            allow: Открыть регистрацию
+            deny: Закрыть регистрацию
+      #FIXME поправить в стейт машине работу с sti
+      # online_course:
+      #   course_state:
+      #     states:
+      #       finished: Курс окончен
+      #       not_finished: Курс не закончен
+      #   states:
+      #     allowed: Регистрация открыта
+      #     denied: Регистрация закрыта
+      #   events:
+      #     allow: Открыть регистрацию
+      #     deny: Закрыть регистрацию
+      company/teacher:
+        state:
+          states:
+            awaiting: Ожидает подтверждения
+            confirmed: Активирован
+            disabled: Архивирован
+          events:
+            disable: Архивировать
+            confirm: Активировать
+      company:
+        state:
+          states:
+            active: Активна
+            draft: Черновик
+          events:
+            deactivate: Отключить

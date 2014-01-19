@@ -1,8 +1,0 @@
-- content_for :sidebar do
-  = simple_form_for :q, default_search_form_options(url: topics_path, html: {class: ''}) do |f|
-    = f.input :category_hubs_id_eq, collection: Category::Hub.all
-    = f.button :submit
-
-- @topics.each do |t|
-  = link_to t, topic_path(t)
-  %br

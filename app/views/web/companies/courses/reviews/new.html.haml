@@ -1,0 +1,5 @@
+- content_for :header do
+  != t('.course_reviews', course: link_to(resource_course, company_course_path(resource_course)))
+= simple_form_for @review, url: company_course_reviews_path(resource_course),
+  :html => { :class => 'form-horizontal' } do |f|
+  = render "form", f: f

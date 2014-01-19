@@ -1,2 +1,5 @@
-%footer
-  %p &copy; Company 2013
+.footer
+  %p= link_to t('.tour'), tour_pages_path
+  %p= link_to t('.add_new_company'), new_account_company_path
+
+  = render 'layouts/web/shared/reformal'

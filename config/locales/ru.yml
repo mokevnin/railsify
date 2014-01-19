@@ -1,0 +1,21 @@
+ru:
+  application:
+    name: Курсовод
+    description: Сервис для организации онлайн/оффлайн курсов
+  edit: редактировать
+  show: посмотреть
+  delete: удалить
+  are_you_sure: Вы уверены?
+  minute: минута
+  minutes: минуты
+  minutess: минут
+  has_no_courses: Курсов нет
+  location:
+    unknow: Неопределено
+  course:
+    dates: Дата проведения
+    has_no_seat: Все места заняты
+    registration_open: Регистрация открыта
+    participation: Участие
+    member: Я иду!
+    auth: Авторизуйтесь чтобы записаться на курс

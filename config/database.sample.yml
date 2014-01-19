@@ -1,18 +1,17 @@
-setup: &setup
+default: &base
   adapter: postgresql
-  username: postgres
-  password:
   encoding: unicode
+  pool: 2
+  host: 127.0.0.1
 
 development:
-  <<: *setup
-  database: rails-examples_development
+  <<: *base
+  database: coursify_development
 
 test:
-  <<: *setup
-  database: rails-examples_test
-  
+  <<: *base
+  database: coursify_test
+
 production:
-  <<: *setup
-  username: rails-examples
-  database: rails-examples_production
+  <<: *base
+  database: coursify_production

@@ -1,0 +1,13 @@
+%footer.well
+  .row
+    .col-md-4
+      %ul.list-unstyled
+        %li= resource_company.phone if resource_company.phone?
+        %li= mail_to resource_company.public_email if resource_company.public_email?
+    .col-md-4
+      - if resource_company.pages.published.any?
+        %ul.list-unstyled
+          - resource_company.pages.published.each do |p|
+            %li= link_to p, company_page_path(p.slug)
+    .col-md-4
+      = link_to t('application.name'), root_url(subdomain: false)

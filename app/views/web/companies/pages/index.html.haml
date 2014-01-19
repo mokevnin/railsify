@@ -1,0 +1,5 @@
+- content_for :header do
+  = t('.pages')
+
+- @pages.each do |n|
+  = link_to n, company_page_path(n)

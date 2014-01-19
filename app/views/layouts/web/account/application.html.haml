@@ -1,0 +1,19 @@
+!!! 5
+%html(lang="en")
+  %head
+    = render 'layouts/web/shared/head'
+  %body
+    .container
+      = render 'layouts/web/account/shared/navbar'
+      = bootstrap_flash
+      - let yield :header do |header|
+        - if header
+          %h4= yield :header
+      = yield
+
+      = render 'layouts/web/shared/footer'
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"

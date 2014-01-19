@@ -1,23 +1,41 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
-//
+// This is a manifest file that'll be compiled into including all the files listed below.
+// Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
+// be included in the compiled file accessible from http://example.com/assets/application.js
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
-// GO AFTER THE REQUIRES BELOW.
+// the compiled file.
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
-//= require anjlab/datepicker
-//= require anjlab/timepicker
 //= require chosen-jquery
+//= require cocoon
+//= require bootstrap
+//= require jquery.ui.all
+//= require js-routes
+//= require bootstrap-switch
+//= require redactor-rails
+
 //= require_self
 
 $(function(){
-  $('select.extra_select').chosen();
+  $('.chosen-select').chosen({disable_search_threshold: 10});
+
+  //FIXME to reactjs
+  var switcher = $('.make-switch');
+  switcher.on('switch-change', function(e, data) {
+    var $el = $(data.el).parents('.make-switch');
+    value = data.value;
+    // console.log($el.find('a.on'))
+    if (value)
+      $el.find("a.on").click();
+    else
+      $el.find("a.off").click();
+  });
+
+  $("#teacher_suggestion").on("ajax:success", function(e, data, status, xhr) {
+    window.location.reload();
+  });
+
+  $(".switch-state, .switch-course-state").on("ajax:success", function(e, data, status, xhr) {
+    window.location.reload();
+  });
 });

@@ -1,0 +1,72 @@
+!!! 5
+%html{:lang => "en"}
+  %head
+    = render 'layouts/web/shared/head'
+  %body
+    .container
+      = render 'layouts/web/companies/shared/navbar'
+      = render 'layouts/web/companies/shared/js'
+      .row
+        .col-md-8
+          = bootstrap_flash
+          - let yield :header do |data|
+            - if data.present?
+              %h4= data
+          = yield
+        .col-md-4
+          - if signed_in?
+            #accordion.panel-group
+              .panel.panel-primary
+                .panel-heading
+                  %h4.panel-title
+                    %a.accordion-toggle{'href' => '#collapseOne', 'data-toggle' => 'collapse', 'data-parent' => '#accordion'}
+                      = t('.fast_menu')
+                #collapseOne.panel-collapse.collapse.in
+                  .panel-body
+                    %ul.list-unstyled
+                      - if current_user.can_manage?(resource_company)
+                        %li= link_to t('.company_management'), company_admin_root_path
+                        %li= link_to t('.courses'), company_admin_courses_path
+                        - if current_user.can_update?(resource_company)
+                          - if resource_company.teachers.awaiting.any?
+                            %li
+                              = link_to t('.teacher_waits'), company_admin_teachers_path(q: {state_eq: :awaiting})
+                              %span.badge= resource_company.teachers.awaiting.count
+                        - if resource_company.course_reviews.on_moderate.any?
+                          %li
+                            = link_to t('.course_review_waits'), company_admin_reviews_path
+                            %span.badge= resource_company.course_reviews.on_moderate.count
+                      - else
+                        -#NOTE let
+                        - let company_teacher_by(current_user) do |teacher|
+                          - if teacher
+                            %li #{t('.teaching')}: #{teacher.human_state_name}
+                          - else
+                            %li= link_to t('.teacher_suggestion'), api_company_teachers_path(format: :json), remote: true, method: :post, data: {confirm: t('are_you_sure')}, id: :teacher_suggestion
+            %br
+
+          .sidebar-nav
+            - let yield :sidebar_image do |image|
+              - if image.present? || resource_company.logo?
+                .thumbnail
+                  = image_tag image.presence || resource_company.logo
+              - if resource_company.description?
+                %p= truncate resource_company.description, length: 300
+          %br
+          - let yield :sidebar do |content|
+            - if content.present?
+              = content
+          %br
+          - if resource_company.facebook_group_link?
+            .fb-like-box{"data-href" => resource_company.facebook_group_link,
+              "data-width" => "290",
+              "data-show-faces" => "true",
+              "data-header" => "false",
+              "data-stream" => "false",
+              "data-show-border" => "true"}
+
+      = render 'layouts/web/companies/shared/footer'
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster

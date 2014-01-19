@@ -1,2 +1,0 @@
-* breadcrumbs
-* titles

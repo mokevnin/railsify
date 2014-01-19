@@ -1,0 +1,32 @@
+.well.well-default
+  = simple_form_for :q, default_search_form_options do |f|
+    = f.input :course_id_eq, collection: resource_company.courses,
+      include_blank: t('.select_course')
+    = f.input :course_state_eq, collection: model_states(:course), value_method: :name, label_name: :human_name,
+      include_blank: t('.select_course_state')
+    = f.input :course_teacher_id_eq, collection: resource_company.teachers,
+      include_blank: t('.select_teacher')
+
+    = f.button :submit
+
+- if @lessons.empty?
+  = t('.has_no_lesson')
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= sort_link(@q, :start)
+        %th= sort_link(@q, :course)
+        %th= sort_link(@q, :name)
+        %th= han("course/lesson", :attendants_count)
+    %tbody
+      - @lessons.each do |lesson|
+        %tr
+          %td= l lesson.start, format: :short
+          -#NOTE polymorphic route example
+          -#FIXME почему то сломались
+          %td= link_to lesson.course, edit_polymorphic_path([:company, :admin, lesson.course])
+          %td= lesson
+          %td= link_to lesson.members_who_visited_count, company_admin_lesson_attendants_path(lesson)
+
+= paginate @lessons

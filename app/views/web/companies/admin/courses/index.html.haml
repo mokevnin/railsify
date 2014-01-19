@@ -1,0 +1,63 @@
+.well.well-default
+  .row
+    .col-md-6
+      = simple_form_for :q, default_search_form_options do |f|
+        = f.input :state_eq, collection: model_states(:course), label_method: :human_name, value_method: :name
+        = f.input :course_state_eq, collection: model_states(:course, :course_state), label_method: :human_name, value_method: :name,
+          include_blank: t('.select_state')
+        = f.button :submit
+
+    .col-md-3.pull-right
+      = button_to t('.add_offline_course'), new_company_admin_offline_course_path, method: 'get', class: 'btn'
+    .col-md-3.pull-right
+      = button_to t('.add_online_course'), new_company_admin_online_course_path, method: 'get', class: 'btn'
+
+- if @courses.empty?
+  = t('.has_no_courses')
+- else
+  %table#courses.table.table-striped
+    %thead
+      %tr
+        %th= sort_link(@q, :start_date)
+        %th= sort_link(@q, :name)
+        %th= han(:course, :members_count)
+        %th= han(:course, :lessons_count)
+        %th= han(:course, :reviews_count)
+        %th
+    %tbody
+      - @courses.each do |course|
+        %tr.course
+          %td= l course.start_date, format: :short if course.start_date
+          %td
+            %p
+              = course
+            - teachers = course.teachers.map do |teacher|
+              - link_to teacher, company_teacher_path(teacher.company_teacher)
+            %p.small
+              != teachers.join(', ')
+            - let course.state_events.first do |event|
+              - if event
+                = link_to hen(:course, event), fire_event_api_company_course_path(course, event: event),
+                  method: :patch, class: "switch-state btn btn-xs btn-default",
+                  remote: true, params: {state_machine: :course_state, event: :finish}
+            - let course.course_state_events.first do |event|
+              - if event
+                = link_to hen(:course, event, :course_state), fire_event_api_company_course_path(course, state_machine: :course_state, event: event),
+                  method: :patch, class: "switch-course-state btn btn-xs btn-default",
+                  remote: true, params: {event: :finish}
+          %td= link_to_if course.members.any?, course.members_with_max, company_admin_members_path(q: {course_id_eq: course.id})
+          %td= link_to_if course.lessons.any?, course.lessons.count, company_admin_lessons_path(q: {course_id_eq: course.id})
+          %td= link_to_if course.reviews.any?, course.reviews.count, company_admin_reviews_path(q: {course_id_eq: course.id})
+          %td.col-md-2
+            .btn-toolbar.pull-right{role: 'toolbar'}
+              .btn-group.btn-group-xs
+                -if course.published?
+                  = link_to company_course_path(course), class: "btn btn-default" do
+                    %span.glyphicon.glyphicon-link
+                = link_to company_admin_course_path(course), class: "btn btn-default" do
+                  %span.glyphicon.glyphicon-eye-open
+                -if current_user.can_update?(course)
+                  = link_to edit_polymorphic_url([:company, :admin, course]), class: "btn btn-default" do
+                    %span.glyphicon.glyphicon-pencil
+
+= paginate @courses

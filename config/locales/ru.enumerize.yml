@@ -1,0 +1,6 @@
+ru:
+  enumerize:
+    course:
+      course_type:
+        webinar: "Вебинар"
+        classroom: "Очный"

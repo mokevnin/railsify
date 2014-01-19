@@ -1,7 +1,13 @@
 class UserRegistrationType < User
   include ApplicationType
 
-  has_secure_password
+  validates :accept_agreement, acceptance: true
+  validates :password, presence: true
 
-  permit :login, :email, :password, :password_confirmation
+  permit :email, :password, :birthday,
+    :accept_agreement, :first_name, :last_name, :avatar
+
+  def email=(email)
+    write_attribute(:email, email.mb_chars.downcase)
+  end
 end

@@ -1,0 +1,13 @@
+%h4= han(:course, :description)
+!= @course.description
+
+%h4= han(:course, :lessons)
+- if @course.lessons.any?
+  - @course.lessons.each do |lesson|
+    %div
+      %div
+        = l lesson.start_date
+        = lesson.date
+        %b= lesson
+      = lesson.description
+    %br

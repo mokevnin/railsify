@@ -1,0 +1,7 @@
+= simple_form_for @company_teacher, url: company_admin_teacher_path(@company_teacher),
+  html: {class: 'form-horizontal'} do |f|
+  = f.input :state_event, as: :state_event
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'
+

@@ -1,0 +1,60 @@
+- if @nearest_courses.any?
+  .panel.panel-default
+    .panel-heading= t('.nearest_courses')
+    .panel-body
+      - @nearest_courses.each do |course|
+        .media
+          .pull-left
+            = image_tag course.image.thumb
+          .media-body
+            %h4.media-heading
+              = link_to course, company_course_url(course, subdomain: course.company.login)
+            %table.course-block
+              - if course.nearest_lesson_datetime
+                %tr
+                  %td.text-muted #{han(:course, :nearest_lesson_datetime)}:
+                  %td.padding10= l course.nearest_lesson_datetime, format: :short
+              %tr
+                %td.text-muted #{t('course.participation')}:
+                %td.padding10= course_subscription_state(course)
+        %hr
+      %div.text-right
+        = link_to t('.all_courses'), nearest_company_courses_path
+
+  .row
+    .col-md-8
+      - if @finished_courses.any?
+        .panel.panel-default
+          .panel-heading= t('.finished_courses')
+          .panel-body
+            - @finished_courses.each do |course|
+              .media
+                .media-body
+                  %h4.media-heading
+                    = link_to course, company_course_url(course, subdomain: course.company.login)
+                  %table.course-block
+                    - if course.nearest_lesson_datetime
+                      %tr
+                        %td.text-muted #{han(:course, :nearest_lesson_datetime)}:
+                        %td.padding10= l course.nearest_lesson_datetime, format: :short
+                    %tr
+                      %td.text-muted #{t('course.dates')}:
+                      %td= course.dates
+            %div.text-right
+              = link_to t('.all_finished_courses'), finished_company_courses_path
+    .col-md-4
+      - if @news.any?
+        .panel.panel-default
+          .panel-heading= t('.news')
+          .panel-body
+            %ul.media-list
+              - @news.each do |news|
+                %li.media
+                  - if news.picture?
+                    %a.pull-left
+                      %img.media-object{src: news.picture.thumb}
+                  .media-body
+                    %h4.media-heading
+                      = link_to news, company_news_path(news.slug)
+                      %small= l news.published_date, format: :short
+                    = truncate news.body, length: 200

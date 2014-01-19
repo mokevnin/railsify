@@ -1,0 +1,27 @@
+.text-right
+  = button_to t('.add_manager'), new_company_admin_manager_path, method: 'get', class: 'btn'
+
+= paginate @managers
+
+- if @managers.empty?
+  = t('.has_no_managers')
+- else
+  %table#managers.table.table-striped
+    %thead
+      %tr
+        %th= sort_link(@search, :full_name)
+        %th= sort_link(@search, :created_at)
+        %th
+    %tbody
+      - @managers.each do |manager|
+        %tr.manager
+          %td.manager_full_name= manager.full_name
+          %td= l manager.created_at, format: :short
+          %td
+            .btn-toolbar.pull-right{role: 'toolbar'}
+              .btn-group.btn-group-xs
+                - if resource_company.creator != manager.user
+                  = link_to company_admin_manager_path(manager), data: {confirm: t('.are_you_sure')},
+                    method: :delete, class: "btn btn-default destroy-manager" do
+                    %span.glyphicon.glyphicon-remove
+

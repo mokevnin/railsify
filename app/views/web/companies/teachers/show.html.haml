@@ -1,0 +1,34 @@
+.media
+  - if @teacher.avatar?
+    .pull-left
+      %img.media-object{src: @teacher.avatar}
+  %h3= @teacher
+  = simple_format @teacher.description
+- if @teacher.not_finished_courses.any?
+  %br
+  .panel.panel-default
+    .panel-heading
+      %b= t('.teach_courses')
+    .panel-body
+      .table
+        - @teacher.not_finished_courses.each do |c|
+          %tr
+            %td
+              %h4
+                = link_to c, company_course_path(c)
+                %small= l c.start_date, format: :short if c.start_date
+            %td= c.short_description
+
+- if @teacher.finished_courses.any?
+  %br
+  .panel.panel-default
+    .panel-heading
+      %b= t('.finished_courses')
+    .panel-body
+      .table
+        - @teacher.finished_courses.each do |c|
+          %tr
+            %td
+              %h4
+                = link_to c, company_course_path(c)
+                %small= l c.start_date, format: :short if c.start_date

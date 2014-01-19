@@ -1,0 +1,97 @@
+- content_for :header do
+  = @course
+  -if current_user.can_update?(@course)
+    -#NOTE polymorphic url helpers
+    %small= link_to t('edit'), edit_polymorphic_path([:company, :admin, @course])
+
+- if @course.image?
+  - content_for :sidebar_image do
+    = @course.image
+
+- content_for :sidebar do
+  - if current_user.can_review?(@course)
+    %p.text-center
+      = link_to t('.review'), new_company_course_review_path(@course),
+        class: 'btn btn-info btn-block', method: 'get', id: "review_link"
+  %p
+  - if @course.full_address.present?
+    %p= @course.full_address
+    .thumbnail
+      = image_tag "http://maps.googleapis.com/maps/api/staticmap?markers=#{@course.full_address}&center=#{@course.full_address}&zoom=15&size=300x200&sensor=true"
+    %br
+  %p
+    %b #{han(:course, :teachers)}:
+  %hr
+  - @course.teachers.each do |teacher|
+    %p= link_to teacher, company_teacher_path(teacher.company_teacher)
+    %p= truncate teacher.description, length: 150
+    %hr
+
+%table.table.table-striped
+  %tr
+    %td
+    %td
+      = render 'web/shared/buttons'
+  - if @course.nearest_lesson_datetime
+    %tr
+      %td= han(:course, :nearest_lesson_datetime)
+      %td
+        - if @course.nearest_lesson_datetime
+          = l @course.nearest_lesson_datetime, format: :week_month
+  %tr
+    %td= t('course.participation')
+    %td
+      - if @course.course_finished?
+        = @course.human_course_state_name
+      - elsif !signed_in?
+        = link_to t('course.auth'), new_session_url(subdomain: false, from: company_course_url(@course)),
+          class: 'btn btn-primary', method: 'get'
+      - elsif @course_member
+        = button_to t('.unsubscribe'), company_course_member_path(@course),
+          class: 'btn btn-default', method: 'delete', id: "unsubscribe_to_course"
+      - elsif @course.subscription_denied?
+        = @course.human_subscription_state_name
+      - elsif !@course.has_seat?
+        = t('course.has_no_seat')
+      - elsif @course.subscribable_by?(current_user)
+        = button_to t('.subscribe'), company_course_member_path(@course),
+          class: 'btn btn-success', method: 'post', id: "subscribe_to_course"
+
+- if @course.description?
+  .panel.panel-default
+    .panel-heading
+      %b= t('.course_description')
+    .panel-body
+      != @course.description
+
+- if @course.lessons.any?
+  .panel.panel-default
+    .panel-heading
+      %b= t('.course_lessons')
+    .panel-body
+      %table.table-default
+        - @course.lessons.each do |lesson|
+          %tr
+            %td
+              = lesson.date
+              %br
+            %td
+              - if signed_in? && lesson.finished?
+                - if lesson.members.exists?(user: current_user)
+                  %span.glyphicon.glyphicon-eye-open
+                - else
+                  %span.glyphicon.glyphicon-eye-close
+            %td.col-md-9
+              %h5
+                = lesson
+                - if signed_in? && lesson.presentation? && @course.members.exists?(user: current_user)
+                  %small= link_to t('.download_presentation'), lesson.presentation.url
+              %div!= lesson.description
+
+- if @reviews.any?
+  %h4= t('.course_reviews')
+  - @reviews.each do |review|
+    .well
+      %b= review.creator
+      %span.small= l review.created_at, format: :short
+      = simple_format review.body

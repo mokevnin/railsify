@@ -1,0 +1,15 @@
+- if @schedule.empty?
+  = t('has_no_lessons')
+- else
+  -#TODO сегодня = l Time.current, format: :short
+  - @schedule.each do |date, lessons|
+    .panel.panel-default
+      .panel-heading
+        = l date, format: :week_month
+      .panel-body
+        - lessons.each do |lesson|
+          = l lesson.start, format: :time if lesson.start?
+          = link_to lesson.course, company_course_path(lesson.course)
+          \-
+          %b= lesson
+          %p= truncate lesson.description, length: 200

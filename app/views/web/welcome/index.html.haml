@@ -1,3 +1,15 @@
-- @topics.each do |t|
-  = t
-  %br
+.jumbotron
+  %h1= t('application.name')
+  %p.lead= t('application.description')
+  %p
+    - if signed_in?
+      = link_to t('.add_new_company'), new_account_company_path, class: 'btn btn-lg btn-success'
+    - else
+      = link_to t('.get_started'), new_user_path, class: 'btn btn-lg btn-success'
+
+- if @courses.empty?
+  = t('has_no_courses')
+- else
+  .row.marketing
+    - @courses.each do |course|
+      = render partial: "web/shared/course", object: course

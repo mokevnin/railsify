@@ -1,0 +1,7 @@
+= simple_form_for @user, url: account_password_path(reset_password_token: params[:reset_password_token]),
+  method: :put, html: {class: 'form-horizontal'} do |f|
+  = f.input :password
+  = f.input :password_confirmation
+
+  .form-actions
+    = f.button :submit, value: t(".reset"), class: 'btn btn-shine'

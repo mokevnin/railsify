@@ -1,0 +1,10 @@
+- if @teachers.empty?
+  = t('.has_no_teachers')
+- else
+  - @teachers.each do |teacher|
+    .col-md-4
+      = link_to company_teacher_path(teacher), class: "thumbnail" do
+        %img{src: teacher.avatar.medium}
+      .caption
+        %h5.text-center
+          = link_to teacher, company_teacher_path(teacher)

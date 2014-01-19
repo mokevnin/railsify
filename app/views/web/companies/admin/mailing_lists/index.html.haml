@@ -1,0 +1,42 @@
+.text-right
+  = button_to t('.add_mailing_list'), new_company_admin_mailing_list_path, method: 'get', class: 'btn'
+
+- if @mailing_lists.empty?
+  = t('.has_no_mailing_lists')
+- else
+  %table#mailing_lists.table.table-striped
+    %thead
+      %tr
+        %th= han('mailing_list', :state)
+        %th= t('.sended')
+        %th= han('mailing_list', :course)
+        %th= han('mailing_list', :title)
+        %th= han('mailing_list', :created_at)
+        %th
+    %tbody
+      - @mailing_lists.each do |mailing_list|
+        %tr.mailing_list
+          %td
+            - if mailing_list.state_events.empty?
+              = mailing_list.human_state_name
+            - else
+              .btn-group.event-switcher
+                .button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                  = mailing_list.human_state_name
+                  %span.caret
+                %ul.dropdown-menu
+                  - mailing_list.state_events.each do |event|
+                    - if event
+                      %li= link_to hen('mailing_list', event), fire_event_api_company_mailing_list_path(mailing_list, event: event, format: :json),
+                        method: :patch, class: "switch-state",
+                        remote: true
+
+          %td=  "#{mailing_list.mailing_list_users.processed.count}/#{mailing_list.users.count}" if mailing_list.processed?
+          %td= link_to mailing_list.course, company_course_path(mailing_list.course)
+          %td= mailing_list
+          %td= l mailing_list.created_at, format: :short
+          %td
+            .btn-toolbar.pull-right{role: 'toolbar'}
+              .btn-group.btn-group-xs
+                = link_to edit_company_admin_mailing_list_path(mailing_list), class: "btn btn-default" do
+                  %span.glyphicon.glyphicon-pencil

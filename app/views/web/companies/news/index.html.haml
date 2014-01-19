@@ -1,0 +1,14 @@
+- if @news.empty?
+  = t('.has_no_news')
+- else
+  %ul.media-list
+    - @news.each do |n|
+      %li.media
+        - if n.picture?
+          %a.pull-left
+            %img.media-object{src: n.picture.thumb}
+        .media-body
+          %h4.media-heading
+            = link_to n, company_news_path(n.slug)
+            %small= l n.published_date, format: :short
+          = truncate n.body, length: 200

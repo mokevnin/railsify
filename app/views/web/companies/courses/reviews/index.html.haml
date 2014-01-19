@@ -1,0 +1,19 @@
+/ TODO add pagination
+/ = paginate @reviews
+
+- if @reviews.empty?
+  = t('has_no_reviews')
+- else
+  %table.table.table-hover
+    %thead
+      %tr
+        %th= han('course/review', :creator)
+        %th= han('course/review', :body)
+        %th= han('course/review', :date)
+    %tbody
+      - @reviews.each do |review|
+        %tr
+          %td= review.creator
+          %td= review.body
+          %td= l review.created_at, format: :short
+/ = paginate @reviews

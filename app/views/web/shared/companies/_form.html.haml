@@ -1,0 +1,17 @@
+= f.input :state_event, as: :state_event
+= f.input :name
+= f.input :login
+= f.input :logo, as: :image_preview
+= f.input :logo_cache, as: :hidden
+= f.input :facebook_group_link
+= f.input :public_email
+= f.input :phone
+= f.input :description, as: :text
+-#TODO навести красоту
+-# = f.simple_fields_for :domains do |domain|
+-#   = render 'web/shared/companies/domain_fields', :f => domain
+-# .links
+-#   = link_to_add_association t('.add_domain'), f, :domains,
+-#     partial: 'web/shared/companies/domain_fields'
+
+= f.button :submit, class: 'btn btn-primary'

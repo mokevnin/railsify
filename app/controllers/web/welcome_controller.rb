@@ -1,5 +1,6 @@
 class Web::WelcomeController < Web::ApplicationController
   def index
-    @topics = Topic.published.page(params[:page])
+    redirect_to account_root_path if signed_in?
+    @courses = Course.web.nearest.limit(10).decorate
   end
 end

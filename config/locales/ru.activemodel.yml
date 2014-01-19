@@ -1,0 +1,22 @@
+ru:
+  activemodel:
+    attributes:
+      user_sign_in_type:
+        password: Пароль
+
+    errors:
+      models:
+        user_password_remind_type:
+          attributes:
+            email:
+              email: Введите корректный email!
+              user_not_found: Пользователь с таким email не существует!
+
+        user_sign_in_type:
+          attributes:
+            email:
+              email: Введен некорректный email
+              user_new: Пожалуйста, активируйте свой аккаунт, перейдя по ссылке из письма
+              user_inactive: Ваш аккаунт заблокирован
+            password:
+              user_or_password_invalid: Email и/или пароль неверны

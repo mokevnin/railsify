@@ -1,4 +1,78 @@
-en:
+ru:
   layouts:
     web:
-      application:
+      account:
+        application:
+          schedule: Мое расписание
+          teach: Преподаю
+          learn: Изучаю
+          organize: Организую
+          companies: Компании
+        shared:
+          navbar:
+            my_companies: Мои компании
+            learn_courses: Курсы
+            profile: Профиль
+            courses: Курсы
+            companies: Компании
+      companies:
+        application:
+          fast_menu: Быстрое меню
+          company_management: Управление компанией
+          courses: Редактирование курсов
+          teacher_suggestion: Предложить услуги преподавателя
+          teacher_waits: Хотят преподавать
+          course_review_waits: Новые отзывы
+          teaching: Статус преподавателя
+        admin:
+          application:
+            reviews: Отзывы
+            courses: Курсы
+            lessons: Лекции
+            members: Учащиеся
+            mailing_lists: Рассылка
+            teachers: Преподаватели
+            company: Компания
+            news: Новости
+            pages: Страницы
+            managers: Администраторы
+            profile: Профиль
+
+          shared:
+            navbar:
+              courses: Курсы
+              members: Учащиеся
+              teachers: Преподаватели
+              news: Новости
+              pages: Страницы
+              managers: Админы
+        shared:
+          navbar:
+            home: Главная
+            courses: Курсы
+            schedule: Расписание
+            teachers: Преподаватели
+            news: Новости
+            reviews: Отзывы
+      shared:
+        user_menu:
+          learn: Изучаю
+          teach: Преподаю
+          organize: Организую
+          profile: Профиль
+          change_password: Смена пароля
+          admin: Управление
+          sign_out: Выйти
+          sign_in: Войти
+          sign_up: Регистрация
+        footer:
+          add_new_company: Добавить компанию
+          tour: Тур по сайту
+        navbar:
+          admin: Админка
+          new_company: Создать компанию
+          new_course: Создать курс
+          courses: Курсы
+          companies: Компании
+          account: Аккаунт
+          tour: Тур по сайту

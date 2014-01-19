@@ -1,0 +1,11 @@
+= f.input :state_event, as: :state_event
+= f.input :picture, as: :image_preview
+= f.input :picture_cache, as: :hidden
+= f.input :name
+= f.input :slug
+= f.input :published_at
+= f.input :body, as: :text
+
+.form-actions
+  = f.button :submit, class: 'btn btn-primary'
+  = link_to t('.cancel'), root_path, class: 'btn'

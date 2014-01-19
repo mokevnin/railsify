@@ -1,0 +1,11 @@
+%ul.nav.nav-tabs.nav-justified
+  = menu_item t('.nearest_courses'), nearest_company_courses_path
+  = menu_item t('.finished_courses'), finished_company_courses_path
+%br
+
+- if courses.empty?
+  = t('has_no_courses')
+- else
+  - courses.each do |course|
+    = render partial: "web/shared/course", object: course
+    %hr

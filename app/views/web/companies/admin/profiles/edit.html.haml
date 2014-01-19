@@ -1,0 +1,13 @@
+= simple_form_for resource_company, url: company_admin_profile_path,
+  html: {class: 'form-horizontal'} do |f|
+  = f.input :state_event, as: :state_event
+  = f.input :name
+  = f.input :login, readonly: true
+  = f.input :logo, as: :image_preview
+  = f.input :logo_cache, as: :hidden
+  = f.input :facebook_group_link
+  = f.input :public_email
+  = f.input :phone
+  = f.input :description, as: :text
+
+  = f.button :submit, class: 'btn btn-primary'

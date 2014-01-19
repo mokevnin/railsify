@@ -1,81 +1,84 @@
-ruby '2.0.0'
+ruby '2.1.0'
 
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
-
-# Use postgresql as the database for Active Record
+gem 'rails', '~> 4.1.0.beta1'
 gem 'pg'
-gem 'kaminari'
-gem 'validates'
-gem 'state_machine'
-gem 'russian'
-gem 'simple_form'
-gem 'virtus'
-gem 'term-ansicolor'
-gem 'configus'
-gem 'ransack'
-gem 'omniauth'
+gem 'puma'
 gem 'draper'
-gem 'authority'
-gem 'foreman'
-gem 'ancestry'
+gem 'carrierwave'
+gem "fog"
+gem 'mini_magick'
+gem 'cocoon'
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', require: false
+gem 'rails-observers'
 
-gem 'anjlab-bootstrap-rails', '~> 3.0.2.0', :require => 'bootstrap-rails'
-gem 'anjlab-widgets'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-
-gem 'haml-rails'
-gem 'apipie-rails'
-gem 'less-rails'
-gem "chosen-rails"
-gem 'jquery-rails'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-#gem 'turbolinks'
+gem 'google-analytics-rails'
 
 gem 'active_model_serializers'
 
-# Use ActiveModel has_secure_password
+gem 'therubyracer', platforms: :ruby
+gem 'uglifier', '>= 1.3.0'
+#gem 'turbolinks'
+
+gem 'bootstrap-sass'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'sass-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'haml-rails'
+gem 'less-rails'
+gem 'chosen-rails' #TODO use rails-assets
+gem 'js-routes'
+gem 'whenever'
+gem 'backup'
+gem 'redactor-rails'
+
+gem 'http_accept_language'
+gem 'redcarpet'
+gem 'configus'
+gem 'russian'
+gem 'validates'
+gem 'state_machine', github: "seuros/state_machine"
+gem 'term-ansicolor'
+gem 'virtus'
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'simple_form', github: "plataformatec/simple_form"
+gem 'authority'
 
-gem 'puma'
+#TODO remove after ransack release
+gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
+gem "polyamorous", github: "activerecord-hackery/polyamorous"
 
-group :development do
-  gem 'mail_view'
-  gem 'capistrano'
-  gem 'sqlite3'
-  gem 'quiet_assets'
-  gem 'spring'
-  gem 'spring-commands-testunit'
-end
+gem 'kaminari'
+gem 'enumerize'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'apipie-rails'
+gem 'mail_view'
+gem 'factory_girl_rails'
+gem 'breadcrumbs_on_rails'
 
 group :test do
-  #NOTE for travis-ci
-  gem 'rake'
-  gem 'coveralls', require: false
-  gem 'minitest'
-  gem 'seedbank'
-  gem 'capybara-rails'
-  gem 'site_prism'
+  gem "rake"
   gem 'wrong'
-
+  gem 'mocha', require: false
+  gem 'capybara-rails', github: "mokevnin/capybara-rails"
   gem 'poltergeist'
+  gem 'site_prism'
+
   gem 'launchy'
 end
 
-group :development, :test do
-  gem 'factory_girl_rails'
+group :development do
+  gem 'jazz_hands'
+  gem 'foreman'
+  gem 'vendorer'
+  # gem 'quiet_assets'
+  gem 'pre-commit'
+  gem 'spring'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  # gem 'bullet'
 end

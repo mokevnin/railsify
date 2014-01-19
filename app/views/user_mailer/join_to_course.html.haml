@@ -1,0 +1,9 @@
+%p Вы записались на курс #{link_to @course, company_course_url(@course, subdomain: @course.company.login)}
+
+- if @course.nearest_lesson_datetime
+  %p Ближайшая лекция: #{l @course.nearest_lesson_datetime, format: :long}
+
+%p Дополнительная информация:
+%ul
+  %li Вы можете оставить отзыв о курсе (кнопка "оставить отзыв" будет доступна на странице курса после первой лекции)
+  %li В #{link_to 'личном кабинете', account_root_url} вы можете отслеживать прогресс по курсам.

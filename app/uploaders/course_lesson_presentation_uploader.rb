@@ -1,0 +1,2 @@
+class CourseLessonPresentationUploader < ApplicationUploader
+end

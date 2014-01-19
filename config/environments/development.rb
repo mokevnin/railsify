@@ -1,4 +1,4 @@
-RailsExamples::Application.configure do
+Coursify::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -8,6 +8,9 @@ RailsExamples::Application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
+
+  #TODO прочитать что оно делает
+  config.assets.initialize_on_precompile = true
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -26,9 +29,9 @@ RailsExamples::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  config.active_record.observers = :error_log_observer
 end
 
-#NOTE reload on each request for better development
 ActionDispatch::Reloader.to_prepare do
   load Rails.root.join('config/configus.rb')
 end

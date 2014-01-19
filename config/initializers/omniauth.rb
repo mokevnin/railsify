@@ -1,3 +1,3 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :developer
+  # provider :facebook, configus.facebook.key, configus.facebook.secret
 end

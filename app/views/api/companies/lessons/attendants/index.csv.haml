@@ -1,0 +1,3 @@
+= CSV.generate do |csv|
+  - @members.each do |m|
+    - csv << [m.id, m.full_name]

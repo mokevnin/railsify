@@ -1,0 +1,8 @@
+ru:
+  simple_form:
+    labels:
+      user:
+        accept_agreement: Согласие на обработку персональных данных
+    placeholders:
+      company:
+        login: login.coursify.ru

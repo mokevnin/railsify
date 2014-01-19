@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :user_authorization, :class => 'User::Authorization' do
-    uid { generate :string }
-    provider { generate :string }
+    user nil
+    uid "MyString"
+    provider "MyString"
   end
 end

@@ -1,4 +1,4 @@
-RailsExamples::Application.configure do
+Coursify::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's
@@ -12,6 +12,9 @@ RailsExamples::Application.configure do
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
 
+  #TODO прочитать что оно делает
+  config.assets.initialize_on_precompile = true
+
   # Configure static asset server for tests with Cache-Control for performance.
   config.serve_static_assets  = true
   config.static_cache_control = "public, max-age=3600"
@@ -20,8 +23,14 @@ RailsExamples::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  # config.active_record.observers = []
+
   # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  #NOTE for capybara
+  config.action_dispatch.show_exceptions = true
+
+  #NOTE for debugging
+  config.active_record.observers = :error_log_observer
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false

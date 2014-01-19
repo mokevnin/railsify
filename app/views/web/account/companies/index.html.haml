@@ -1,0 +1,18 @@
+= paginate @companies
+
+%table.table.table-striped
+  %tr
+    %th= sort_link(@q, :id)
+    %th= sort_link(@q, :state)
+    %th= sort_link(@q, :login)
+    %th= sort_link(@q, :name)
+    %th= sort_link(@q, :created_at)
+    %th
+  - @companies.each do |c|
+    %tr
+      %td= c.id
+      %td= c.human_state_name
+      %td= c.login
+      %td= link_to c, company_root_url(subdomain: c.login)
+      %td= l c.created_at, format: :short
+      %td= link_to t('.edit'), edit_company_admin_profile_url(subdomain: c.login)

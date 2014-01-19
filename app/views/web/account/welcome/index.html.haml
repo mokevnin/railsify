@@ -1,0 +1,73 @@
+.row
+  .col-md-7
+    - if current_user.teacher?
+      .row
+        .col-md-12
+          %h4= t('.teach')
+          - if @course_teachers.empty?
+            = t('.has_no_teach_courses')
+          - else
+            %table.table
+              %thead
+                %tr
+                  %th= han(:course, :next_lesson)
+                  %th= han(:course, :name)
+              %tbody
+                - @course_teachers.each do |teacher|
+                  - let teacher.course do |c|
+                    %tr
+                      - if c.course_finished?
+                        %td= hsn(:course, :finished, :course_state)
+                      - else
+                        %td= l c.nearest_lesson_datetime, format: :short if c.nearest_lesson_datetime
+                      %td= link_to c, company_course_url(c, subdomain: teacher.company.login)
+
+    .row
+      .col-md-12
+        %h4= t('.my_schedule')
+        - if @schedule.empty?
+          = t('.has_no_schedule')
+        - else
+          - @schedule.each do |date, lessons|
+            .panel.panel-default
+              .panel-heading
+                %b= l date, format: :week_month
+              .panel-body
+                - lessons.each do |lesson|
+                  = l lesson.start, format: :time
+                  = link_to lesson.course, company_course_url(lesson.course, subdomain: lesson.course.company.login)
+                  \-
+                  %b= lesson
+                  %p= truncate lesson.description, length: 200
+
+  .col-md-5
+    %div
+      %h4= t('.settings')
+      %p= link_to t('.edit_profile'), edit_account_profile_url
+      %p= link_to t('.edit_password'), edit_account_password_url
+
+    - if @companies.any?
+      .well.well-sm
+        %h4= t('.manage_in')
+        %table.table
+          %tbody
+            - @companies.each do |company|
+              %tr
+                %td
+                  = link_to edit_company_admin_profile_url(subdomain: company.login) do
+                    %span.glyphicon.glyphicon-pencil
+                %td= link_to company, company_root_url(company, subdomain: company.login)
+
+    %div
+      %h4= t('.recently')
+      - if @members.empty?
+        = t('.has_no_courses')
+      - else
+        - @members.each do |m|
+          .row
+            - let m.course do |c|
+              .col-md-9= link_to c, company_course_url(c, subdomain: c.company.login)
+              .col-md-3
+                .progress
+                  .progress-bar.progress-bar-info{:role => "progressbar",
+                    "aria-valuenow" => "60", "aria-valuemax" => "100", :style => "width: #{m.attendance_percentage}%"}

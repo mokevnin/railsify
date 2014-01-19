@@ -1,0 +1,22 @@
+= paginate @members
+
+- if @members.any?
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= han(:course, :start_date)
+        %th= sort_link(@search, :course_name)
+        %th= sort_link(@search, :course_company_id)
+        %th= han('course/member', :attendance)
+    %tbody
+      - @members.each do |m|
+        - let m.course do |c|
+          %tr
+            %td= l c.start_date, format: :short if c.start_date
+            %td= link_to c, company_course_url(c, subdomain: c.company.login)
+            %td= link_to c.company, company_root_url(subdomain: c.company.login)
+            %td= m.attendance
+- else
+  %p= t('.has_no_courses')
+
+= paginate @members

@@ -3,34 +3,27 @@ require 'test_helper'
 class Web::SocialNetworksControllerTest < ActionController::TestCase
   setup do
     @auth_hash = generate(:facebook_auth_hash)
-    @user = create :user
+    request.env['omniauth.auth'] = OmniAuth::AuthHash::InfoHash.new @auth_hash
   end
 
-  test "should get authorization with facebook" do
-    @user.authorizations.create(@auth_hash.extract(:uid, :provider))
+  test "facebook with new user" do
+    get :facebook
+    assert_response :redirect
 
-    request.env['omniauth.auth'] = @auth_hash
+    user = User.find_by(@auth_hash[:info].extract(:email))
+
+    assert { user }
+    assert { user.authorizations.any? }
+    assert { signed_in? }
+  end
+
+  test "facebook with exists user" do
+    user = create :user, email: @auth_hash[:info][:email]
 
     get :facebook
     assert_response :redirect
 
     assert { signed_in? }
-  end
-
-  test "should fail authorization with facebook" do
-    @user.deactivate
-    @user.authorizations.create(@auth_hash.extract(:uid, :provider))
-
-    request.env['omniauth.auth'] = @auth_hash
-
-    get :facebook
-    assert_response :redirect
-
-    assert { !signed_in? }
-  end
-
-  test "should get failure" do
-    get :failure
-    assert_response :redirect
+    assert { user.authorizations.any? }
   end
 end

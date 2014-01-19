@@ -1,0 +1,40 @@
+!!! 5
+%html{:lang => "en", "ng-app" => "Edu"}
+  %head
+    = render 'layouts/web/shared/head'
+  %body
+    .container-fluid
+      = render 'layouts/web/companies/shared/navbar'
+      .row
+        .col-md-3
+          .well.sidebar-nav
+            %ul.nav.nav-list
+              %h5= t('.courses')
+              - if current_user.can_update?(Course, for: resource_company)
+                = menu_item t('.courses'), company_admin_courses_path
+                = menu_item t('.lessons'), company_admin_lessons_path(q: {course_state_eq: :published})
+                = menu_item t('.members'), company_admin_members_path
+                = menu_item company_admin_reviews_path do
+                  = t('.reviews')
+                  - if resource_company.course_reviews.on_moderate.any?
+                    %span.badge= resource_company.course_reviews.on_moderate.count
+              - if current_user.can_manage?(resource_company)
+                = menu_item t('.mailing_lists'), company_admin_mailing_lists_path
+                = menu_item company_admin_teachers_path do
+                  = t('.teachers')
+                  - if resource_company.teachers.awaiting.any?
+                    %span.badge= resource_company.teachers.awaiting.count
+              - if current_user.manage_in.any?
+                %h5= t('.company')
+                - if current_user.can_update?(resource_company)
+                  = menu_item t('.news'), company_admin_news_index_path
+                  = menu_item t('.pages'), company_admin_pages_path
+                  = menu_item t('.managers'), company_admin_managers_path
+                  = menu_item t('.profile'), edit_company_admin_profile_path
+        .col-md-9
+          -# = render_breadcrumbs
+          = bootstrap_flash
+          %h3= yield :header
+          = yield
+
+      = render 'layouts/web/companies/shared/footer'

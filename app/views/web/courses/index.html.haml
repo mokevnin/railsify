@@ -1,0 +1,13 @@
+.row
+  .col-md-8
+    - if @courses.empty?
+      = t('has_no_courses')
+    - else
+      - @courses.each do |course|
+        = render partial: "web/shared/course", object: course
+        %hr
+  .col-md-4
+    = simple_form_for @search, default_search_form_options(url: courses_path, html: {class: ''}) do |f|
+      = f.input :city_id_eq, collection: City.all, include_blank: t('.select_city')
+
+      = f.button :submit

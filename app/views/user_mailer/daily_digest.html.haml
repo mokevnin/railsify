@@ -1,0 +1,8 @@
+%p Сегодня в вашем расписании есть мероприятие(-я):
+
+- @user.learn_lessons.half_day.each do |lesson|
+  %div
+    = l lesson.start, format: :time
+    = link_to lesson, company_course_url(lesson.course)
+  %div= lesson.description
+  %br

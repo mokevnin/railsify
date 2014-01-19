@@ -1,0 +1,56 @@
+en:
+  layouts:
+    web:
+      account:
+        application:
+          schedule: My schedule
+        shared:
+          navbar:
+            my_companies: My companies
+            learn_courses: Courses
+            profile: Profile
+      companies:
+        admin:
+          shared:
+            navbar:
+              courses: Courses
+              members: Students
+              teachers: Teachers
+              news: News
+              pages: Pages
+              managers: Admins
+        shared:
+          navbar:
+            home: Main
+            courses: Courses
+            schedule: Schedule
+            teachers: Teachers
+            news: News
+      shared:
+        user_menu:
+          schedule: My schedule
+          my_companies: My companies
+          learn_courses: Learn courses
+          profile: Profile
+          change_password: Change password
+          admin: Management
+          sign_out: Sign out
+          sign_in: Sign in
+          sign_up: Sign up
+        footer:
+          add_new_company: Add company
+          tour: Tour
+        navbar:
+          admin: Admin
+          new_company: New Company
+          new_course: New Course
+          courses: Courses
+          companies: Companies
+          account: Account
+          tour: Tour
+
+      admin:
+        shared:
+          navbar:
+            users: Users
+            sign_out: Sign out

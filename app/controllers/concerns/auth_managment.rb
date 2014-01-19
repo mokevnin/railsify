@@ -9,17 +9,21 @@ module Concerns
     end
 
     def signed_in?
-      current_user
+      !current_user.guest?
     end
 
     def authenticate_user!
-      unless signed_in?
-        redirect_to new_session_path
-      end
+      redirect_to new_session_path unless signed_in?
     end
 
     def current_user
-      @current_user ||= User.active.where(id: session[:user_id]).first
+      @_current_user ||= User.active.where(id: session[:user_id]).first || Guest.new
+    end
+
+    def required_basic_auth!
+      authenticate_or_request_with_http_basic do |user, password|
+        user == configus.basic_auth.username && password == configus.basic_auth.password
+      end
     end
   end
 end

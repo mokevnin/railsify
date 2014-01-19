@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default_url_options[:host] = configus.mailer.host
-  default from: "#{configus.mailer.host} <#{configus.mailer.from}>",
+  default_url_options[:host] = configus.host
+  default from: "#{configus.host} <#{configus.mailer.from}>",
     content_transfer_encoding: '7bit'
 end

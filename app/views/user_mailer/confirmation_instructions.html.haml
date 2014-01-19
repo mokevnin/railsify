@@ -1,2 +1,1 @@
-= link_to 'Ссылка', @url
-для подтверждения акканут
+%p Пожалуйста, подтвердите вашу регистрацию, пройдя по #{link_to 'ссылке', confirm_user_url(@user, confirmation_token: @user.confirmation_token)}

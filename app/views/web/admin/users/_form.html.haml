@@ -1,0 +1,8 @@
+= f.input :email
+= f.input :first_name
+= f.input :last_name
+= f.input :description
+
+.form-actions
+  = f.button :submit, class: 'btn btn-primary'
+  = link_to t('.cancel'), admin_user_path, class: 'btn'

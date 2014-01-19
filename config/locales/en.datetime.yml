@@ -1,0 +1,9 @@
+en:
+  time:
+    formats:
+      time: "%H:%M"
+      default: "%d-%m-%Y %H:%M"
+      week_month: "%A %d %B %H:%M"
+  date:
+    formats:
+      week_month: "%A %d %B"

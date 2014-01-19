@@ -1,0 +1,101 @@
+ru:
+  attributes:
+    name: Название
+    body: Содержание
+    state_event: Изменить состояние
+    state: Состояние
+    created_at: Время создания
+    published_at: Опубликовано
+    description: Описание
+    teacher: Преподаватель
+    city: Город
+    slug: ЧПУ
+    login: Логин
+    company_id: Компания
+    teacher_id: Преподаватель
+    user: Пользователь
+    order: Порядок
+
+  activerecord:
+    models:
+      user: Пользователь
+      city: Город
+      company: Компания
+      online_course: Вебинар
+      course/review: Отзыв
+      course/teacher: Преподаватель
+
+    attributes:
+
+      mailing_list:
+        course: Курс
+        title: Название
+
+      company_manager:
+        full_name: Полное имя
+
+      user:
+        first_name: Имя
+        last_name: Фамилия
+        middle_name: Отчество
+        password: Пароль
+        #TODO перенести в simle_form.yml
+        password_confirmation: Подтверждение пароля
+        birthday: Дата рождения
+        avatar: Аватарка
+        teach_courses: Преподаваемые курсы
+        learn_courses: Изучаемые курсы
+        full_name: Имя
+        companies: Компании
+        teach_in: Преподаю
+        description: О себе
+
+      offline_course:
+        subscription_state_event: Регистрация
+        company: Компания
+
+      course:
+        subscribe_state: Регистрация
+        location: Место
+        course_type: Тип курса
+        begins: Дата начала курса
+        address_street: Адрес (без города)
+        address_description: Уточнение адреса
+        subscription_state_event: Регистрация
+        course_state_event: Окончание
+        lessons_count: Лекций
+        members_count: Зарегистрировано
+        reviews_count: Отзывов
+        nearest_lesson_datetime: Ближайшая лекция
+        address: Адрес
+        maximum_members_count: Максимальное число участников
+        teachers: Преподаватели
+        start_date: Дата начала
+        next_lesson: Следующая лекция
+
+      course/lesson:
+        attendants_count: Присутствующие
+        start: Дата начала
+        duration: Длительность лекции
+
+      course/member:
+        attendance: Присутствие
+
+      company:
+        logo: Логотип
+        facebook_group_link: Группа в фейсбуке
+        public_email: Публичный email
+        phone: Телефон
+        courses_count: Курсов
+        teachers_count: Преподавателей
+
+    errors:
+      messages:
+        #blank: 'Поле не может быть пустым'
+        #confirmation: 'Не совпадает с подтверждением'
+        user_should_not_exists: 'Пользователь с таким email не найден!'
+
+        company:
+          attributes:
+            subdomain:
+              wrong_domain: Некорректный формат поддомена (разрешены символы латинского алфавила и цифры)

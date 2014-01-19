@@ -1,0 +1,12 @@
+= simple_form_for @user, url: account_profile_path,
+  html: { class: 'form-horizontal'} do |f|
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :middle_name
+  = f.input :birthday, end_year: Date.today.year - 12, start_year: Date.today.year - 70, include_blank: true
+  = f.input :avatar, as: :image_preview
+  = f.input :avatar_cache, as: :hidden
+  = f.input :description, as: :text
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-shine'

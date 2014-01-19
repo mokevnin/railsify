@@ -1,0 +1,9 @@
+- content_for :header do
+  = @news
+  %small= l @news.published_date, format: :short
+
+.media
+  -if @news.picture?
+    %a.pull-left
+      %img.media-object{src: @news.picture}
+  = simple_format @news.body

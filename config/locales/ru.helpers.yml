@@ -1,0 +1,20 @@
+ru:
+  helpers:
+    select:
+      prompt: Выберите
+    submit:
+      create: Создать
+      update: Сохранить
+      submit: Применить
+      q:
+        create: Применить
+        submit: Применить
+      user_sign_in_type:
+        create: Войти
+      user:
+        create: Зарегистрироваться
+        update: Подтверждаю
+      user_password_remind_type:
+        create: Восстановить
+      company_manager:
+        create: Добавить

@@ -1,0 +1,14 @@
+= f.input :maximum_members_count
+= f.input :name
+= f.input :image, as: :image_preview
+= f.association :company_teachers, as: :chosen_select,
+  collection: resource_company.teachers, include_blank: true,
+  input_html: {multiple: true}
+= f.input :description, as: :editor
+= f.simple_fields_for :lessons do |lesson|
+  = render 'lesson_fields', :f => lesson
+.links
+  = link_to_add_association t('.add_lesson'), f, :lessons
+
+.form-actions
+  = f.button :submit

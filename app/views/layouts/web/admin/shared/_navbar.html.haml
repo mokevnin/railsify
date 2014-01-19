@@ -1,0 +1,13 @@
+%header.navbar.navbar-default
+  .navbar-header
+    %button.navbar-toggle{"type" => "button", "data-toggle" => "collapse",
+      "data-target" => ".navbar-collapse"}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand{:href => root_path}= t('application.name')
+  .navbar-collapse.collapse
+    %ul.nav.navbar-nav
+      = menu_item t('.users'), admin_users_path
+    %ul.nav.navbar-nav.pull-right
+      = menu_item t('.sign_out'), session_path, method: :delete

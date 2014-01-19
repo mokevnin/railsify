@@ -1,0 +1,23 @@
+%header.navbar.navbar-default
+  .navbar-header
+    %button.navbar-toggle{"type" => "button", "data-toggle" => "collapse",
+      "data-target" => ".navbar-collapse"}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    -# %a.navbar-brand{:href => root_path}= resource_company
+  .navbar-collapse.collapse
+    %ul.nav.navbar-nav
+      = menu_item t('.home'), company_root_path
+      = menu_item t('.courses'), nearest_company_courses_path
+      - if resource_company.course_lessons.any?
+        = menu_item t('.schedule'), company_schedule_path
+      - if resource_company.teachers.any?
+        = menu_item t('.teachers'), company_teachers_path
+      - if resource_company.course_reviews.published.any?
+        = menu_item t('.reviews'), company_reviews_path
+      - if resource_company.news.any?
+        = menu_item t('.news'), company_news_index_path
+
+    %ul.nav.navbar-nav.pull-right
+      = render 'layouts/web/shared/user_menu'

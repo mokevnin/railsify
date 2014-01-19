@@ -1,0 +1,20 @@
+%header.navbar.navbar-default
+  .container
+    .navbar-header
+      %button.navbar-toggle{"type" => "button", "data-toggle" => "collapse",
+        "data-target" => ".navbar-collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => root_path}= t('application.name')
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        = menu_item t('.courses'), courses_path
+      -#   - if current_user.companies.any?
+      -#     = menu_item han(:user, :companies), account_companies_path
+      -#   - if current_user.teach_courses.any?
+      -#     = menu_item han(:user, :courses), account_teached_courses_path
+      -#   = menu_item han(:user, :learned_courses), account_courses_path
+      -#   = menu_item t('.schedule'), account_schedule_path
+      %ul.nav.navbar-nav.pull-right
+        = render 'layouts/web/shared/user_menu'

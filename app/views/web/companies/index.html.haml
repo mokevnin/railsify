@@ -1,0 +1,17 @@
+= paginate @companies
+
+- if @companies.any?
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= sort_link(@search, :name)
+        %th= sort_link(@search, :city)
+        %th= han(:company, :courses_count)
+    %tbody
+      - @companies.each do |company|
+        %tr
+          %td= link_to company, root_url(subdomain: company.login)
+          %td= company.courses.last.try :city
+          %td= company.courses.published.count
+
+= paginate @companies

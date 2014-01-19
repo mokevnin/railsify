@@ -1,90 +1,146 @@
-RailsExamples::Application.routes.draw do
+Coursify::Application.routes.draw do
   if Rails.env.development?
+    #NOTE проверка писем
     mount UserMailView => 'user_mail_view'
   end
 
-  scope module: :web do
-    get "/404", :to => "web/errors#not_found"
-    get "/500", :to => "web/errors#internal_server_error"
-
-    post '/auth/developer/callback' => 'social_networks#facebook'
-    get '/auth/:action/failure' => 'social_networks#failure'
-
-    root 'welcome#index'
-
-    resource :session, only: [:new, :create, :destroy]
-    resource :password
-    resources :users, only: [:index, :show, :new, :create] do
-      member do
-        #NOTE get потому что из письма
-        get :confirm
-      end
-      scope module: :users do
-        resources :topics, only: [:index]
-      end
-    end
-    resources :hubs, only: [:index]
-    resources :topics
-
-    namespace :account do
-
-    end
-  end
-
   namespace :api do
-    namespace :v1 do
-      resources :hubs
-      resources :topics do
-        scope module: :topics do
-          resources :comments
+    constraints SubdomainConstraint do
+      scope module: :companies, as: 'company' do
+        resources :courses, only: [] do
+          scope module: :courses do
+            resources :reviews, only: [] do
+              member do
+                patch :fire_event
+              end
+            end
+          end
+          member do
+            patch :fire_event
+          end
+        end
+        resources :teachers, only: [:create] do
+          member do
+            patch :fire_event
+          end
+        end
+        resources :users, only: [] do
+          collection do
+            get :autocomplete
+          end
+        end
+        resources :mailing_lists, only: [] do
+          member do
+            patch :fire_event
+          end
+        end
+        resources :courses, only: [] do
+          scope module: :courses do
+            resources :members
+          end
+        end
+        resources :lessons, only: [] do
+          scope module: :lessons do
+            resources :attendants, only: [:index, :create] do
+              collection do
+                delete :remove
+              end
+            end
+          end
+        end
+        resources :pages, only: [] do
+          collection do
+            post :reorder
+          end
         end
       end
     end
   end
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
+  scope module: :web do
+    get '/auth/:action/callback' => 'social_networks#facebook'
+    get '/auth/:action/failure' => 'social_networks#failure'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+    resource :locale, only: [:update]
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+    #NOTE work with subdomains
+    scope module: 'companies', as: 'company' do
+      constraints SubdomainConstraint do
+        root to: "welcome#index"
+        resources :courses, only: [:show] do
+          collection  do
+            get :finished
+            get :nearest
+          end
+          scope module: :courses do
+            resources :reviews, only: [:new, :create, :index]
+            resource :member, only: [:create, :destroy]
+          end
+        end
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+        resources :reviews, only: [:index]
+        resources :teachers, only: [:index, :show]
+        resources :news, only: [:index, :show]
+        resources :pages, only: [:show]
+        resource :schedule, only: [:show]
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+        namespace :admin do
+          #FIXME mount Sidekiq::Web => '/sidekiq'
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+          root to: "welcome#index"
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
+          resource :profile, only: [:edit, :update]
+          resources :courses, only: [:index, :show]
+          resources :lessons, only: [:index, :destroy] do
+            scope module: :lessons do
+              resources :attendants, only: :index
+            end
+          end
+          resources :offline_courses, only: [:show, :new, :edit, :update, :create]
+          resources :online_courses, only: [:show, :new, :edit, :update, :create]
+          resources :reviews, only: [:index, :show, :edit, :update]
+          resources :members, only: [:index, :new, :create]
+          resources :teachers, only: [:index, :edit, :update]
+          resources :managers
+          resources :pages
+          resources :news
+          resources :mailing_lists
+        end
+      end
+    end
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+    root to: "welcome#index"
+
+    namespace :account do
+      root to: 'welcome#index'
+      resource :profile, only: [:edit, :update]
+      resource :password, only: [:edit, :update]
+      resources :companies, only: [:index, :new, :create]
+      resources :courses
+      resources :teach_companies, only: [:index]
+    end
+
+    resources :companies, only: [:index]
+    resources :courses, only: [:index]
+    resources :pages do
+      collection do
+        get :tour
+      end
+    end
+
+    resource :password, only: [:edit, :update]
+    resource :session, only: [:new, :create, :destroy]
+    resource :remind_password, only: [:new, :create]
+    resources :users, only: [:show, :new, :create] do
+      member do
+        get :confirm
+      end
+    end
+
+    namespace :admin do
+      root to: "welcome#index"
+
+      resources :users
+    end
+  end
 end

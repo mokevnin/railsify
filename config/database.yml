@@ -1,0 +1,12 @@
+default: &base
+  adapter: postgresql
+  encoding: unicode
+  host: 127.0.0.1
+
+development:
+  <<: *base
+  database: coursify_development
+
+test:
+  <<: *base
+  database: coursify_test

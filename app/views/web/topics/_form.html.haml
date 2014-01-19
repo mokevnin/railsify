@@ -1,6 +1,0 @@
-= simple_form_for @topic do |f|
-  = f.input :state_event, as: :state_event
-  = f.association :category_hubs, as: :extra_select, input_html: {multiple: true}
-  = f.input :name
-  = f.input :body
-  = f.submit

@@ -1,6 +1,12 @@
-= link_to :by_social_network, sign_in_via_social_network_cpath(:developer)
-= link_to t('.forgot_password'), new_password_path
-= simple_form_for @session, url: session_path do |f|
-  = f.input :email
-  = f.input :password
-  = f.button :submit
+.row
+  .col-md-6
+    = simple_form_for @session, url: session_path(params.extract(:from)),
+      input_html: {class: "form-horizontal"} do |f|
+      = f.input :email
+      = f.input :password
+      = f.button :submit
+
+      = link_to t('.remind_password'), new_remind_password_path
+  .col-md-6
+    %h4= t('.sign_in_also_as')
+    = link_to t(".facebook"), sign_in_via_social_network_cpath(:facebook)

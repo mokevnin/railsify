@@ -1,0 +1,21 @@
+= paginate @courses
+
+- if @courses.empty?
+  = t('has_no_courses')
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th.col-md-2= han(:course, :start_date)
+        %th= han(:course, :city)
+        %th.col-md-4= han(:course, :name)
+        %th= han(:course, :company_id)
+    %tbody
+      - @courses.each do |course|
+        %tr
+          %td= l course.start_date, format: :short if course.start_date
+          %td= course.city
+          %td= link_to course, company_course_url(course, subdomain: course.company.login)
+          %td= link_to course.company, company_root_url(course.company, subdomain: course.company.login)
+
+= paginate @courses

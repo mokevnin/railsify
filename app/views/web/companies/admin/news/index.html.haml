@@ -1,0 +1,28 @@
+.text-right
+  = button_to t('.add_news'), new_company_admin_news_path, method: 'get', class: 'btn'
+
+- if @news.empty?
+  = t('.has_no_news')
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= sort_link(@search, :published_at)
+        %th= sort_link(@search, :state)
+        %th= sort_link(@search, :slug)
+        %th= sort_link(@search, :name)
+        %th
+    %tbody
+      - @news.each do |news|
+        %tr
+          %td= l news.published_at, format: :short if news.published_at?
+          %td= news.human_state_name
+          %td= news.slug
+          %td= link_to_if news.published?, news, company_news_path(news.slug)
+          %td
+            .btn-toolbar.pull-right{role: 'toolbar'}
+              .btn-group.btn-group-xs
+                = link_to edit_company_admin_news_path(news), class: "btn btn-default" do
+                  %span.glyphicon.glyphicon-pencil
+
+= paginate @news

@@ -1,0 +1,164 @@
+en:
+  web:
+    shared:
+      courses:
+        start_date: Start date
+    welcome:
+      index:
+        add_new_company: Add company
+        get_started: Get started
+    sessions:
+      new:
+        login: Login
+        sing_in_now: sing in
+        remind_password: Remind password
+
+    users:
+      new:
+        title: Sign up
+        already_registered?: Already registered
+        login: Login
+
+    remind_passwords:
+      new:
+        password_recovery: Password recovery
+        recovery: Recovery
+
+    account:
+      passwords:
+        edit:
+          password_reset: Password reset
+          reset: Reset
+
+    courses:
+      new:
+        title: Add course
+        cancel: Cancel
+
+      show:
+        manage_course: Manage course
+        course_sign_in: Course sign in
+
+      index:
+        title: Courses list
+
+      form:
+        cancel: Cancel
+
+
+    admin:
+      welcome:
+        index:
+          title: Courses admin panel
+
+      users:
+        new:
+          title: Add user
+          cancel: Cancel
+
+        index:
+          title: User list
+          created_at: Created at
+          actions: Actions
+          edit: Edit
+          destroy: Destroy
+          confirm: You sure?
+          new_user: Add user
+          state: State
+          email: Email
+          firstname: Firstname
+          lastname: Lastname
+          search: Search
+
+
+        edit:
+          title: User edir
+          cancel: Cancel
+
+        form:
+          cancel: Cancel
+
+      courses:
+        new:
+          title: Add course
+          cancel: Cancel
+
+        index:
+          title: Courses list
+          created_at: Created at
+          actions: Actions
+          edit: Edit
+          destroy: Destroy
+          confirm: You sure?
+          new_course: Add course
+          state: State
+          name: Name
+          description: Description
+          search: Search
+
+        edit:
+          title: Course edit
+          cancel: Cancel
+
+        form:
+          cancel: Cancel
+
+    companies:
+      teachers:
+        show:
+          teach_courses: Teach
+      welcome:
+        index:
+          courses: Next courses
+          news: News
+      admin:
+        pages:
+          index:
+            add_page: Add page
+        news:
+          index:
+            add_news: Add news
+        teachers:
+          index:
+            add_teacher: Add teacher
+        courses:
+          index:
+            add_course: Add course
+        managers:
+          index:
+            are_you_sure: are you sure?
+      schedules:
+        show:
+          schedule: Schedule
+      courses:
+        new:
+          cancel: Cancel
+          title: Add company
+        show:
+          course_description: Course description
+          course_lessons: Course lessons
+          subscribe: Subscribe
+          unsubscribe: Unsubscribe
+          new_course: Add course
+          manage_company: Manage company
+
+        form:
+          create_company: Add company
+          cancel: Cancel
+
+        index:
+          title: Companies list
+          created_at: Created at
+          actions: Actions
+          edit: Edit
+          destroy: Destroy
+          confirm: You sure?
+          new_company: Add company
+          state: State
+          name:  Name
+          subdomain: Subdomain
+          search: Search
+
+        edit:
+          title: Edit company
+          cancel: Cancel

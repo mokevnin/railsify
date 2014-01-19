@@ -1,0 +1,10 @@
+- if @reviews.empty?
+  = t('.has_no_reviews')
+- else
+  - @reviews.each do |review|
+    .well
+      %p
+        = link_to review.course, company_course_path(review.course)
+        %b= review.creator
+        %span.small= l review.created_at, format: :short
+      = simple_format review.body

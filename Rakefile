@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-RailsExamples::Application.load_tasks
+Coursify::Application.load_tasks

@@ -1,0 +1,197 @@
+ru:
+  web:
+    shared:
+      courses:
+        start_date: Дата начала
+    welcome:
+      index:
+        add_new_company: Создать компанию
+        get_started: Поехали
+        my_schedule: Мое расписание
+    sessions:
+      new:
+        login: Войти
+        sing_in_now: Зарегистрироваться
+        remind_password: Забыли пароль?
+        sign_in_also_as: 'Войти так же с помощью:'
+
+    users:
+      new:
+        title: Регистрация
+        already_registered?: Уже зарегистрирован?
+        login: Войти
+
+    remind_passwords:
+      new:
+        password_recovery: Восстановление пароля
+        recovery: Восстановить
+
+    account:
+      welcome:
+        index:
+          teach: Преподаю
+          settings: Настройки
+          edit_profile: Редактировать профиль
+          edit_password: Изменить пароль
+          manage_in: Мои компании
+          my_schedule: Мое расписание
+          recently: Последние курсы
+          finished_courses: Законченные курсы
+          has_no_finished_courses: Если вы прошли курс, а он здесь не отображается, то обратитесь к преподавателю, чтобы он отметил этот курс для вас.
+          has_no_courses: Вы не проходите курсы
+          has_no_schedule: Пусто
+      schedules:
+        show:
+          has_no_lessons: Пусто
+      courses:
+        index:
+          has_no_courses: Вы не выбрали курсы
+      passwords:
+        edit:
+          password_reset: Изменить пароль
+          reset: Изменить
+
+    courses:
+      new:
+        title: Создать курс
+        cancel: Отменить
+
+      show:
+        manage_course: Управление курсом
+        course_sign_in: Записаться на курс
+
+      index:
+        title: Список курсов
+        select_city: Выберите город
+
+      form:
+        cancel: Отменить
+
+
+    admin:
+      welcome:
+        index:
+          title: Админка Курсов
+
+      users:
+        new:
+          title: Создать пользователя
+          cancel: Отменить
+
+        index:
+          title: Список пользователей
+          created_at: Время создания
+          actions: Действия
+          edit: Редактировать
+          destroy: Удалить
+          confirm: Вы уверены?
+          new_user: Добавить пользователя
+          state: Состояние
+          email: email
+          firstname: Имя
+          lastname: Фамилия
+          search: Найти
+
+
+        edit:
+          title: Редактирование пользователя
+          cancel: Отменить
+
+        form:
+          cancel: Отменить
+
+      courses:
+        new:
+          title: Создать курс
+          cancel: Отменить
+
+        index:
+          title: Список курсов
+          created_at: Время создания
+          actions: Действия
+          edit: Редактировать
+          destroy: Удалить
+          confirm: Вы уверены?
+          new_course: Добавить курс
+          state: Состояние
+          name: Название
+          description: Описание
+          search: Найти
+
+        edit:
+          title: Редактирование курса
+          cancel: Отменить
+
+        form:
+          cancel: Отменить
+
+    companies:
+      teachers:
+        show:
+          teach_courses: Ближайшие курсы
+          finished_courses: Завершенные курсы
+      welcome:
+        index:
+          courses: Ближайшие курсы
+          news: Новости
+          all_courses: Все курсы
+          all_finished_courses: Все законченные курсы
+          nearest_courses: Ближайшие курсы
+          finished_courses: Законченные курсы
+      admin:
+        members:
+          index:
+            add_course_member: Добавить участника
+        mailing_lists:
+          index:
+            add_mailing_list: Добавить рассылку
+            sended: Отправлено
+        lessons:
+          attendants:
+            index:
+              present: Присутствует
+              absent: Отсутствует
+        pages:
+          index:
+            add_page: добавить страницу
+        news:
+          index:
+            add_news: добавить новость
+        teachers:
+          index:
+            add_teacher: добавить преподавателя
+        courses:
+          index:
+            add_offline_course: добавить оффлайн курс
+            add_online_course: добавить онлайн курс
+        managers:
+          index:
+            are_you_sure: вы уверены?
+            add_manager: Добавить администратора
+      schedules:
+        show:
+          schedule: Расписание
+      courses:
+        courses:
+          nearest_courses: Ближайшие курсы
+          finished_courses: Законченные курсы
+        show:
+          registration: Регистрация
+          course_description: Описание курса
+          course_lessons: Лекции курса
+          course_reviews: Отзывы о курсе
+          subscribe: Записаться на курс
+          unsubscribe: Покинуть курс
+          new_course: Добавить курс
+          manage_company: Управление компанией
+          review: Оставить отзыв
+          reviews: Просмотреть все
+          has_no_seat: Все места заняты
+          auth: Авторизуйтесь чтобы участвовать
+          course_finished: Вы закончили этот курс
+
+        reviews:
+          new:
+            course_reviews: Отзыв к курсу %{course}
+          form:
+            save: Отправить на модерацию

@@ -1,37 +1,31 @@
-class Web::SocialNetworksController < ApplicationController
-
+class Web::SocialNetworksController < Web::ApplicationController
   def facebook
     auth_hash = request.env['omniauth.auth']
+    attrs = ActionController::Parameters.new auth_hash[:info]
     authorization = User::Authorization.where(auth_hash.extract(:provider, :uid)).first_or_initialize
 
     if authorization.persisted?
-      if authorization.user.inactive?
-        f(:notice)
-        redirect_to root_path
-        return
-      end
-
-      sign_in authorization.user
-      f(:success)
+      user = authorization.user
     else
-      user = User.where(auth_hash[:info].extract(:email)).first_or_initialize
-
-      if user.inactive?
-        f(:error)
-        redirect_to root_path
-        return
-      end
+      user = UserFacebookType.where(attrs.extract('email'))
+        .first_or_create(attrs)
 
       user.authorizations << authorization
-
-      if user.activate
-        sign_in user
-        f(:success)
-      else
-        f(:error)
-      end
     end
-    redirect_to root_path
+
+    if user.waiting_confirmation?
+      user.confirm!
+    end
+
+    if user.active?
+      sign_in user
+      f(:success)
+    else
+      f(:error)
+    end
+
+    #FIXME прокидывать урл в facebook
+    try_redirect_to_from_or root_path
   end
 
   def failure

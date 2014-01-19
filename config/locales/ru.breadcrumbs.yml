@@ -1,0 +1,72 @@
+ru:
+  breadcrumbs:
+    web:
+      account:
+        teach_in:
+          index: преподаю в
+        schedules:
+          show: мое расписание
+        teach_companies:
+          index: преподаю
+        application:
+          index: аккаунт
+        companies:
+          index: компании
+          new: новая
+        courses:
+          index: изучаемые курсы
+        profiles:
+          edit: профиль
+        passwords:
+          edit: смена пароля
+      courses:
+        index: курсы
+      companies:
+        news:
+          index: новости
+        courses:
+          index: курсы
+        teachers:
+          index: преподаватели
+        new: новая
+        admin:
+          application:
+            subdomain: поддомен
+            admin: админка
+          reviews:
+            index: отзывы
+          mailing_lists:
+            index: рассылки
+            new: новая
+          profiles:
+            edit: компания
+          lessons:
+            application:
+              index: лекции
+            index: лекции
+            attendants:
+              lectures: лекции курса
+              index: присутствующие
+          courses:
+            reviews:
+              index: отзывы
+            index: курсы
+          offline_courses:
+            index: курсы
+            new: новый
+          online_courses:
+            index: курсы
+            new: новый
+          pages:
+            index: страницы
+          news:
+            index: новости
+            new: новая
+          members:
+            index: ученики
+          teachers:
+            index: преподаватели
+            new: новый
+          managers:
+            index: менеджеры
+            new: новый

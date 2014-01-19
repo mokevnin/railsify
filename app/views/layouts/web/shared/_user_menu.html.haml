@@ -1,0 +1,9 @@
+- if signed_in?
+  = menu_item t(".profile"), account_root_url(subdomain: false)
+  = menu_item t('.sign_out'), session_url(subdomain: false, from: prepare_from(local_assigns[:redirect_to])), method: :delete
+- else
+  = menu_item t(".sign_up"), new_user_url(from: prepare_from, subdomain: false)
+  = menu_item t(".sign_in"), new_session_url(from: prepare_from, subdomain: false)
+
+-# - let switch_locale do |locale|
+-#   = menu_item locale, locale_path, method: "put"

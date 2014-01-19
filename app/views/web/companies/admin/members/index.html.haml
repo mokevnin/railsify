@@ -1,0 +1,31 @@
+.well.well-default
+  .row
+    .col-md-9
+      = simple_form_for :q, default_search_form_options do |f|
+        = f.input :course_id_eq, collection: resource_company.courses,
+          include_blank: t('.select_course')
+        = f.input :course_teacher_id_eq, collection: resource_company.teachers,
+          include_blank: t('.select_teacher')
+        = f.button :submit
+
+    = button_to t('.add_course_member'), new_company_admin_member_path, method: 'get', class: 'btn'
+
+- if @members.empty?
+  = t('.has_no_members')
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= sort_link(@q, :id)
+        %th= sort_link(@q, :course)
+        %th= han(:user, :full_name)
+        %th= t('.attendance')
+    %tbody
+      - @members.each do |member|
+        %tr.course_member
+          %td= member.id
+          %td= link_to member.course, company_course_path(member.course)
+          %td.course_member_full_name= member.user.full_name
+          %td= member.attendance
+
+  = paginate @members

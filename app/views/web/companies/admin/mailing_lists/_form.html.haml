@@ -1,0 +1,7 @@
+= f.input :state_event, as: :state_event
+= f.association :course, collection: resource_company.courses.published
+= f.input :title
+= f.input :body, as: :editor
+
+.form-actions
+  = f.button :submit, class: 'btn btn-primary'
