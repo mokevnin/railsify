@@ -27,14 +27,6 @@ GIT
       exception_notification
 
 GIT
-  remote: git://github.com/plataformatec/simple_form.git
-  revision: ea5ceb7dfa613f432efbfa04195c86599a16d973
-  specs:
-    simple_form (3.0.1)
-      actionpack (>= 4.0.0, < 4.1)
-      activemodel (>= 4.0.0, < 4.1)
-
-GIT
   remote: git://github.com/seuros/state_machine.git
   revision: 809932adc60084e43cf4298a76b0b37675e55d25
   specs:
@@ -93,19 +85,19 @@ GEM
       sass (~> 3.2)
     breadcrumbs_on_rails (2.3.0)
     builder (3.2.2)
-    capistrano (3.0.1)
+    capistrano (3.1.0)
       i18n
       rake (>= 10.0.0)
-      sshkit (>= 0.0.23)
+      sshkit (~> 1.3)
     capistrano-bundler (1.1.1)
       capistrano (~> 3.0)
       sshkit (>= 1.2.0)
-    capistrano-rails (1.1.0)
-      capistrano (>= 3.0.0)
-      capistrano-bundler (>= 1.0.0)
-    capistrano-rvm (0.1.0)
+    capistrano-rails (1.1.1)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.1)
       capistrano (~> 3.0)
-      sshkit (~> 1.2.0)
+      sshkit (~> 1.2)
     capybara (2.2.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -150,7 +142,7 @@ GEM
       compass (>= 0.12.2)
     configus (0.0.5)
     connection_pool (1.2.0)
-    coolline (0.4.2)
+    coolline (0.4.3)
     database_cleaner (1.2.0)
     debug_inspector (0.0.2)
     debugger (1.6.5)
@@ -220,7 +212,7 @@ GEM
     hashie (2.0.5)
     hike (1.2.3)
     hirb (0.7.1)
-    http_accept_language (2.0.0)
+    http_accept_language (2.0.1)
     i18n (0.6.9)
     ice_nine (0.11.0)
     jazz_hands (0.5.2)
@@ -267,7 +259,7 @@ GEM
     mini_magick (3.7.0)
       subexec (~> 0.2.1)
     mini_portile (0.5.2)
-    minitest (5.2.1)
+    minitest (5.2.2)
     mocha (1.0.0)
       metaclass (~> 0.0.1)
     multi_json (1.8.4)
@@ -308,7 +300,7 @@ GEM
     pre-commit (0.12.0)
       pluginator (>= 0.12)
     predicated (0.2.6)
-    pry (0.9.12.4)
+    pry (0.9.12.5)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
@@ -332,6 +324,8 @@ GEM
       pry (>= 0.9.11)
     puma (2.7.1)
       rack (>= 1.1, < 2.0)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
@@ -360,7 +354,7 @@ GEM
       mime-types
       orm_adapter
     redcarpet (3.0.0)
-    redis (3.0.6)
+    redis (3.0.7)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
     ref (1.0.5)
@@ -381,7 +375,7 @@ GEM
       sexp_processor (~> 4.1)
     russian (0.6.0)
       i18n (>= 0.5.0)
-    sass (3.2.13)
+    sass (3.2.14)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
@@ -393,6 +387,9 @@ GEM
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
+    simple_form (3.0.1)
+      actionpack (>= 4.0.0, < 4.1)
+      activemodel (>= 4.0.0, < 4.1)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -412,7 +409,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sshkit (1.2.0)
+    sshkit (1.3.0)
       net-scp (>= 1.1.2)
       net-ssh
       term-ansicolor
@@ -505,6 +502,7 @@ DEPENDENCIES
   polyamorous!
   pre-commit
   puma
+  quiet_assets
   rails (~> 4.1.0.beta1)
   rails-observers
   rake
@@ -514,7 +512,7 @@ DEPENDENCIES
   russian
   sass-rails (~> 4.0.0)
   sidekiq
-  simple_form!
+  simple_form
   sinatra (>= 1.3.0)
   site_prism
   spring

@@ -44,7 +44,7 @@ gem 'state_machine', github: "seuros/state_machine"
 gem 'term-ansicolor'
 gem 'virtus'
 gem 'bcrypt-ruby', '~> 3.1.2'
-gem 'simple_form', github: "plataformatec/simple_form"
+gem 'simple_form'
 gem 'authority'
 
 #TODO remove after ransack release
@@ -75,7 +75,7 @@ group :development do
   gem 'jazz_hands'
   gem 'foreman'
   gem 'vendorer'
-  # gem 'quiet_assets'
+  gem 'quiet_assets'
   gem 'pre-commit'
   gem 'spring'
   gem 'capistrano-rails'
