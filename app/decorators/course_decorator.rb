@@ -20,6 +20,7 @@ class CourseDecorator < ApplicationDecorator
   end
 
   def short_description
+    return "" if description.blank?
     h.simple_format(h.truncate(h.strip_tags(description).html_safe, length: 200, escape: false))
   end
 

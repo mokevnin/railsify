@@ -25,15 +25,15 @@ module Coursify
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = :en
+    config.i18n.default_locale = :ru
 
     # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
     # the I18n.default_locale when a translation can not be found).
     config.i18n.fallbacks = true
 
     #FIXME изничтожить двойную загрузку мидлевары
-    config.middleware.use 'HttpAcceptLanguage::Middleware'
-    config.middleware.insert_after 'HttpAcceptLanguage::Middleware', 'LocaleMiddleware'
+    # config.middleware.use 'HttpAcceptLanguage::Middleware'
+    # config.middleware.insert_after 'HttpAcceptLanguage::Middleware', 'LocaleMiddleware'
 
     config.active_record.observers = :mailing_list_queue_observer
 

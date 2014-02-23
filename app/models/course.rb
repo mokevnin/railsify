@@ -3,7 +3,7 @@ class Course < ActiveRecord::Base
 
   has_many :members, dependent: :destroy
   has_many :member_users, through: :members, source: :user
-  has_many :lessons, -> { order(start: :asc) }, inverse_of: :course
+  has_many :lessons, inverse_of: :course
   has_many :reviews, dependent: :destroy
   has_many :mailing_lists, dependent: :destroy
   has_many :teachers, inverse_of: :course, dependent: :destroy
@@ -83,7 +83,7 @@ class Course < ActiveRecord::Base
   end
 
   def start_date
-    super rescue lessons.first.try(:start)
+    sorted_lessons.first.try(:start)
   end
 
   def started?
@@ -92,6 +92,8 @@ class Course < ActiveRecord::Base
   end
 
   def nearest_lesson_datetime
-    super rescue lessons.nearest.first.try :start
+    self[:nearest_lesson_datetime]
+  rescue
+    lessons.nearest.first.try :start
   end
 end

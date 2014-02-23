@@ -18,7 +18,7 @@ class CourseAuthorizer < ApplicationAuthorizer
 
   def reviewable_by?(user)
     return false if user.guest?
-    resource.started?
+    resource.started? || resource.course_finished?
   end
 
   def updatable_by?(user)

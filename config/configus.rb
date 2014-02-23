@@ -1,3 +1,6 @@
+#FIXME hack
+conf = YAML.load_file(File.join "config", "secrets.yml")
+
 Configus.build Rails.env do
   env :production do
     host 'coursify.ru'
@@ -14,8 +17,9 @@ Configus.build Rails.env do
     carrierwave do
       storage :file
     end
+    facebook conf["development"]["facebook"]
   end
 
-  env :test, parent: :production do
+  env :test, parent: :development do
   end
 end

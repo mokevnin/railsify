@@ -9,4 +9,5 @@ development:
 
 test:
   <<: *base
+  pool: 2
   database: coursify_test

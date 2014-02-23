@@ -14,6 +14,7 @@ class Web::Companies::Courses::ReviewsTest < ActionDispatch::IntegrationTest
 
   test "#new #create" do
     p = ::Companies::Courses::ShowPage.visit id: @course.id
+    saop
     p.review_link.click
     p = ::Companies::Courses::Reviews::NewPage.new
     body = generate :string

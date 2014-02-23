@@ -24,3 +24,4 @@ schema.rb
 *.swp
 .idea
 secrets.yml
+*.rdb

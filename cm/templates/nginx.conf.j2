@@ -1,0 +1,17 @@
+upstream coursify {
+  server localhost:3000;
+}
+
+server {
+  listen 80;
+  server_name {{ server_name }};
+  root {{ public_root }};
+
+  try_files $uri @app;
+
+  location @app {
+    proxy_pass http://coursify;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+}

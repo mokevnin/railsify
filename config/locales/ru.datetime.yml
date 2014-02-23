@@ -3,3 +3,6 @@ ru:
     formats:
       day_month_year: "%d %B %Y"
       time: "%H:%M"
+  date:
+    formats:
+      week_month: "%A %d %B"

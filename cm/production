@@ -1,0 +1,9 @@
+[default]
+188.226.187.70 ansible_ssh_user=root
+
+[default:vars]
+deploy_user=coursify_production
+database_name=coursify_production
+server_name="coursify.ru *.coursify.ru"
+public_root=/var/www/coursify/current/public
+rails_env=production

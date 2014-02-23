@@ -2,7 +2,7 @@ ruby '2.1.0'
 
 source 'http://rubygems.org'
 
-gem 'rails', '~> 4.1.0.beta1'
+gem 'rails', '~> 4.1.0.rc1'
 gem 'pg'
 gem 'puma'
 gem 'draper'
@@ -23,6 +23,7 @@ gem 'uglifier', '>= 1.3.0'
 #gem 'turbolinks'
 
 gem 'bootstrap-sass'
+
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'sass-rails', '~> 4.0.0'
@@ -30,10 +31,11 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'haml-rails'
 gem 'less-rails'
 gem 'chosen-rails' #TODO use rails-assets
+gem 'redactor-rails'
+
 gem 'js-routes'
 gem 'whenever'
 gem 'backup'
-gem 'redactor-rails'
 
 gem 'http_accept_language'
 gem 'redcarpet'
@@ -55,10 +57,10 @@ gem 'kaminari'
 gem 'enumerize'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'apipie-rails'
-gem 'mail_view'
+gem 'mail_view' #FIXME use internal feature
 gem 'factory_girl_rails'
 gem 'breadcrumbs_on_rails'
+gem 'jazz_hands'
 
 group :test do
   gem "rake"
@@ -72,7 +74,6 @@ group :test do
 end
 
 group :development do
-  gem 'jazz_hands'
   gem 'foreman'
   gem 'vendorer'
   gem 'quiet_assets'

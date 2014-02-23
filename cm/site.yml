@@ -1,0 +1,134 @@
+---
+-
+  hosts: default
+
+  vars:
+    database_password: <password>
+    postgresql:
+      version: 9.1
+    project_root: /var/www/coursify
+
+  roles:
+    - { role: sivel.newrelic, tags: newrelic, newrelic_license_key: d081dd5efb59001c7eb5598635c1c6c9fce5388d }
+
+  tasks:
+    -
+      name: set locale
+      lineinfile:
+        dest=/etc/environment
+        line='LC_ALL="en_US.UTF-8"'
+        state=present
+        backup=yes
+
+    -
+      name: Set timezone variables
+      copy: content='Etc/UTC'
+            dest=/etc/timezone
+            backup=yes
+      notify:
+        - update timezone
+
+    -
+      name: create user
+      user: name={{ deploy_user }} shell=/bin/bash
+
+    -
+      name: set up auth key
+      authorized_key: user={{ deploy_user }} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+    -
+      name: apt-get update
+      apt: update_cache=true cache_valid_time=3600
+
+    -
+      name: install packages
+      apt: pkg={{ item }} state=installed
+      with_items:
+        - curl
+        - vim
+        - git
+        - runit
+        - gcc
+        - make
+        - libncurses5-dev
+        - python-pycurl
+        - redis-server
+
+        - postgresql-{{ postgresql.version }}
+        - libpq-dev
+        - python-psycopg2
+
+    -
+      name: add repositories
+      apt_repository: repo='ppa:nginx/stable'
+      tags: [nginx]
+
+    -
+      name: install packages
+      apt: pkg=nginx update_cache=yes
+      tags: [nginx]
+
+    -
+      name: update nginx vhost conf
+      template: src=templates/nginx.conf.j2 dest=/etc/nginx/conf.d/coursify.conf
+      notify:
+        - reload nginx
+      tags: [nginx]
+
+    -
+      name: install RVM and Ruby
+      shell: curl -sSL https://get.rvm.io | bash -s stable --ruby --autolibs=enabled
+        creates=~/.rvm
+      tags: [ruby]
+
+    -
+      name: create postgres user
+      sudo: true
+      sudo_user: postgres
+      postgresql_user: name={{ deploy_user }} password={{ database_password }}
+        role_attr_flags=CREATEDB
+      notify:
+        - restart postgresql
+      tags: [postgres]
+
+    -
+      name: create coursify db
+      sudo: true
+      sudo_user: postgres
+      postgresql_db: name={{ database_name }} owner={{ deploy_user }}
+      notify:
+        - restart postgresql
+      tags: [postgres]
+
+    -
+      name: create project directory
+      file: dest={{ project_root }} state=directory owner={{ deploy_user }}
+      tags: [files]
+
+    -
+      name: create shared directory
+      file: dest={{ project_root }}/shared state=directory owner={{ deploy_user }}
+      tags: [files]
+
+    -
+      name: create shared directories
+      file: dest={{ project_root }}/shared/config state=directory owner={{ deploy_user }} recurse=yes
+      tags: [files]
+
+    -
+      name: copy database config
+      template: src=templates/database.yml.j2
+        dest={{ project_root }}/shared/config/database.yml owner={{ deploy_user }}
+      tags: [files]
+
+  handlers:
+    -
+      name: restart postgresql
+      service: name=postgresql state=restarted
+
+    -
+      name: reload nginx
+      service: name=nginx state=reloaded
+
+    - name: update timezone
+      command: dpkg-reconfigure --frontend noninteractive tzdata

@@ -1,0 +1,42 @@
+#FIXME install phantomjs
+
+---
+-
+  hosts: localhost
+
+  vars:
+    server_name: coursify.me
+    public_root: ~/projects/coursify/public
+
+  tasks:
+    -
+      name: install packages
+      homebrew: name={{ item }} state=present
+      with_items:
+        - postgresql
+
+    -
+      name: install RVM and Ruby
+      shell: curl -sSL https://get.rvm.io | bash -s stable --ruby --autolibs=enabled
+        creates=~/.rvm
+
+    -
+      name: autostart nginx
+      shell: ln -sfv /usr/local/opt/nginx/*.plist ~/Library/LaunchAgents
+
+    -
+      name: make nginx conf.d
+      file: dest=/usr/local/etc/nginx/conf.d state=directory
+
+    -
+      name: update nginx vhost conf
+      template: src=templates/nginx.conf.j2 dest=/usr/local/etc/nginx/conf.d/coursify.conf
+
+    -
+      name: update hosts
+      sudo: true
+      lineinfile:
+        dest=/etc/hosts
+        state=present
+        backup=yes
+        line="127.0.0.1 coursify.me undev.coursify.me"
