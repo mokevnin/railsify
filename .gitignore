@@ -25,3 +25,4 @@ schema.rb
 .idea
 secrets.yml
 *.rdb
+secrets.yml*
