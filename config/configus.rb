@@ -10,6 +10,7 @@ Configus.build Rails.env do
     mailer do
       from "noreply@coursify.ru"
     end
+    facebook conf["production"]["facebook"]
   end
 
   env :development, parent: :production do
