@@ -1,0 +1,6 @@
+web: bundle exec puma -b 'unix:///var/www/coursify/shared/tmp/sockets/puma.sock' \
+  -e production \
+  --control 'unix:///var/www/coursify/shared/tmp/sockets/pumactl.sock' \
+  -S /var/www/coursify/shared/tmp/sockets/puma.state \
+  >> /var/www/coursify/shared/log/puma-production.log 2>&1
+sidekiq: sidekiq
