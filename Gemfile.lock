@@ -92,6 +92,8 @@ GEM
     capistrano-bundler (1.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-puma (0.2.3)
+      capistrano (>= 3.0)
     capistrano-rails (1.1.1)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -458,6 +460,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.1.2)
   bootstrap-sass
   breadcrumbs_on_rails
+  capistrano-puma
   capistrano-rails
   capistrano-rvm
   capybara-rails!

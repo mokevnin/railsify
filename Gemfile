@@ -61,6 +61,7 @@ gem 'mail_view' #FIXME use internal feature
 gem 'factory_girl_rails'
 gem 'breadcrumbs_on_rails'
 gem 'jazz_hands'
+gem 'foreman'
 
 group :test do
   gem "rake"
@@ -74,7 +75,7 @@ group :test do
 end
 
 group :development do
-  gem 'foreman'
+  gem 'capistrano-puma', require: false
   gem 'vendorer'
   gem 'quiet_assets'
   gem 'pre-commit'
