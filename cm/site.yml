@@ -44,6 +44,8 @@
       name: install packages
       apt: pkg={{ item }} state=installed
       with_items:
+        - monit
+        - exim4
         - curl
         - vim
         - git
@@ -77,6 +79,8 @@
 
     -
       name: install RVM and Ruby
+      sudo: yes
+      sudo_user: "{{ deploy_user }}"
       shell: curl -sSL https://get.rvm.io | bash -s stable --ruby --autolibs=enabled
         creates=~/.rvm
       tags: [ruby]
@@ -117,8 +121,11 @@
 
     -
       name: copy database config
-      template: src=templates/database.yml.j2
-        dest={{ project_root }}/shared/config/database.yml owner={{ deploy_user }}
+      template: src=templates/{{ item }}.yml.j2
+        dest={{ project_root }}/shared/config/{{ item }}.yml owner={{ deploy_user }}
+      with_items:
+        - database
+        - secrets
       tags: [files]
 
   handlers:

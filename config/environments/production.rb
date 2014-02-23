@@ -80,5 +80,4 @@ Coursify::Application.configure do
   # config.log_formatter = ::Logger::Formatter.new
 
   GA.tracker = 'UA-10536397-8'
-  Rails.logger = Le.new('1562ca6e-59ac-4e00-b116-17dcec3dd4ce')
 end

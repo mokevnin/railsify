@@ -13,7 +13,7 @@ gem 'cocoon'
 gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', require: false
 gem 'rails-observers'
-
+gem 'json'
 gem 'google-analytics-rails'
 
 gem 'active_model_serializers'
