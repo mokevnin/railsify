@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+exec svlogd -t /var/log/runit/{{ runit_service_name }}

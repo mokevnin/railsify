@@ -3,7 +3,6 @@
   hosts: default
 
   vars:
-    database_password: <password>
     postgresql:
       version: 9.1
     project_root: /var/www/coursify
@@ -130,6 +129,9 @@
 
     -
       include: runit.yml runit_service_name=coursify runit_service_owner={{ deploy_user }}
+      tags: [runit]
+    -
+      include: runit.yml runit_service_name=coursify_sidekiq runit_service_owner={{ deploy_user }}
       tags: [runit]
 
   handlers:
