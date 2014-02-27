@@ -85,7 +85,6 @@ Coursify::Application.routes.draw do
         resource :schedule, only: [:show]
 
         namespace :admin do
-          #FIXME mount Sidekiq::Web => '/sidekiq'
 
           root to: "welcome#index"
 

@@ -3,6 +3,8 @@ conf = YAML.load_file(File.join "config", "secrets.yml")
 
 Configus.build Rails.env do
   env :production do
+    basic_auth conf["production"]["basic_auth"]
+
     host 'coursify.ru'
     carrierwave do
       storage :fog
