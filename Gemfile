@@ -60,8 +60,10 @@ gem 'omniauth-facebook'
 gem 'mail_view' #FIXME use internal feature
 gem 'factory_girl_rails'
 gem 'breadcrumbs_on_rails'
-gem 'jazz_hands'
-gem 'foreman'
+
+group :test, :development do
+  gem 'jazz_hands'
+end
 
 group :test do
   gem "rake"
@@ -75,7 +77,7 @@ group :test do
 end
 
 group :development do
-  gem 'capistrano-puma', require: false
+  gem 'foreman'
   gem 'vendorer'
   gem 'quiet_assets'
   gem 'pre-commit'

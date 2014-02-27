@@ -1,0 +1,41 @@
+-
+  name: install
+  apt: pkg=runit state=installed
+  tags: [runit]
+-
+  name: create service dir
+  file: dest=/etc/service state=directory
+  tags: [runit]
+-
+  name: create sv dir
+  file: dest=/etc/sv/{{ runit_service_name }}/log state=directory owner={{ runit_service_owner }} recurse=yes
+  tags: [runit]
+-
+  name: create log dir
+  file: dest=/var/log/runit/{{ runit_service_name }} state=directory owner={{ runit_service_owner }}
+  tags: [runit]
+-
+  name: copy run
+  template: src=templates/runit/{{ runit_service_name }}_run.j2 dest=/etc/sv/{{ runit_service_name }}/run
+            owner={{ runit_service_owner }}
+            mode=755
+  tags: [runit]
+-
+  name: copy log run
+  template: src=templates/runit/{{ runit_service_name }}_log_run.j2
+            dest=/etc/sv/{{ runit_service_name }}/log/run
+            owner={{ runit_service_owner }}
+            mode=755
+  tags: [runit]
+-
+  name: chown service owner
+  file: dest=/etc/sv/{{ runit_service_name }}/supervise
+    state=directory recurse=yes
+    owner={{ runit_service_owner }} mode=0755
+  tags: [runit]
+-
+  name: chown log owner
+  file: dest=/etc/sv/{{ runit_service_name }}/log/supervise
+    state=directory recurse=yes
+    owner={{ runit_service_owner }} mode=0755
+  tags: [runit]

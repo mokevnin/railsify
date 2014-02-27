@@ -128,6 +128,10 @@
         - secrets
       tags: [files]
 
+    -
+      include: runit.yml runit_service_name=coursify runit_service_owner={{ deploy_user }}
+      tags: [runit]
+
   handlers:
     -
       name: restart postgresql
