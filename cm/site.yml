@@ -88,7 +88,7 @@
       name: create postgres user
       sudo: true
       sudo_user: postgres
-      postgresql_user: name={{ deploy_user }} password={{ database_password }}
+      postgresql_user: name={{ deploy_user }}
         role_attr_flags=CREATEDB
       notify:
         - restart postgresql
