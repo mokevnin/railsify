@@ -18,6 +18,7 @@ class Web::Companies::CoursesController < Web::Companies::ApplicationController
     end
     @reviews = course.reviews.published
     @course = course.decorate
+    @lessons = @course.sorted_lessons
 
     add_breadcrumb @course, company_course_path(@course)
     title @course

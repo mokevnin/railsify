@@ -13,7 +13,8 @@ class Web::RemindPasswordsController < Web::ApplicationController
         user.save!
         UserMailer.remind_password(user).deliver
         f(:success)
-        return redirect_to root_path
+        redirect_to root_path
+        return
       end
     end
 

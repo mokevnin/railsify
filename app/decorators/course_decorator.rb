@@ -2,6 +2,7 @@ class CourseDecorator < ApplicationDecorator
   delegate_all
   decorates_association :lessons
   decorates_association :members
+  decorates_association :sorted_lessons
 
   def full_address
     result = "#{address}"

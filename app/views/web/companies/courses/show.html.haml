@@ -64,13 +64,13 @@
     .panel-body
       != @course.description
 
-- if @course.lessons.any?
+- if @lessons.any?
   .panel.panel-default
     .panel-heading
       %b= t('.course_lessons')
     .panel-body
       %table.table-default
-        - @course.lessons.each do |lesson|
+        - @lessons.each do |lesson|
           %tr
             %td
               = lesson.date
