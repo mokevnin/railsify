@@ -92,8 +92,6 @@ class Course < ActiveRecord::Base
   end
 
   def nearest_lesson_datetime
-    self[:nearest_lesson_datetime]
-  rescue
     lessons.nearest.first.try :start
   end
 end
