@@ -2,7 +2,7 @@ ruby '2.1.0'
 
 source 'http://rubygems.org'
 
-gem 'rails', '~> 4.1.0.rc1'
+gem 'rails', '>= 4.1.0.rc1'
 gem 'pg'
 gem 'puma'
 gem 'draper'
@@ -15,6 +15,7 @@ gem 'sinatra', '>= 1.3.0', require: false
 gem 'rails-observers'
 gem 'json'
 gem 'google-analytics-rails'
+gem 'airbrake'
 
 gem 'active_model_serializers'
 
