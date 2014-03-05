@@ -34,7 +34,7 @@
 
     -
       name: update hosts
-      sudo: true
+      sudo: yes
       lineinfile:
         dest=/etc/hosts
         state=present

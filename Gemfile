@@ -84,6 +84,5 @@ group :development do
   gem 'pre-commit'
   gem 'spring'
   gem 'capistrano-rails'
-  gem 'capistrano-rvm'
   # gem 'bullet'
 end

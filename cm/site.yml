@@ -72,6 +72,16 @@
         - python-psycopg2
 
     -
+      name: switch ruby
+      shell: ruby-switch --set ruby2.1
+      tags: [ruby]
+
+    -
+      name: install bundler
+      gem: name=bundler state=present user_install=no
+      tags: [ruby]
+
+    -
       name: update nginx vhost conf
       template: src=templates/nginx.conf.j2 dest=/etc/nginx/conf.d/coursify.conf
       notify:
@@ -122,14 +132,14 @@
       tags: [files]
 
     -
-      include: runit.yml runit_service_name=coursify runit_service_owner={{ deploy_user }}
+      include: tasks/runit.yml runit_service_name=coursify runit_service_owner={{ deploy_user }}
       tags: [runit]
     -
-      include: runit.yml runit_service_name=coursify_sidekiq runit_service_owner={{ deploy_user }}
+      include: tasks/runit.yml runit_service_name=coursify_sidekiq runit_service_owner={{ deploy_user }}
       tags: [runit]
 
     -
-      include: backup.yml
+      include: tasks/backup.yml
 
   handlers:
     -
