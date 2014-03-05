@@ -4,11 +4,9 @@ conf = YAML.load_file(File.join "config", "secrets.yml")
 Configus.build Rails.env do
   env :production do
     basic_auth conf["production"]["basic_auth"]
+    airbrake conf["production"]["airbrake"]
 
     host 'coursify.ru'
-    carrierwave do
-      storage :fog
-    end
     mailer do
       from "noreply@coursify.ru"
     end
@@ -17,9 +15,6 @@ Configus.build Rails.env do
 
   env :development, parent: :production do
     host 'courisfy.me'
-    carrierwave do
-      storage :file
-    end
     facebook conf["development"]["facebook"]
   end
 

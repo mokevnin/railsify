@@ -1,0 +1,35 @@
+---
+
+-
+  name: install gem backup
+  gem: name=backup version=4.0.1 state=present user_install=no
+  tags: [backup]
+
+-
+  name: create dir for backup configs
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+  file: dest=~/Backup/models/ state=directory recurse=yes
+  tags: [backup]
+-
+  name: generate backup config
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+  shell: backup generate:config --config-file ~/Backup/config.rb
+    creates=~/Backup/config.rb
+  tags: [backup]
+-
+  name: copy backup config
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+  template: src=templates/backup.rb.j2 dest=~/Backup/models/coursify.rb
+    validate="ruby -c %s"
+  tags: [backup]
+-
+  name: update cron for backup
+  sudo: yes
+  sudo_user: "{{ deploy_user }}"
+  cron: name="backup coursify postgresql"
+    job="backup perform -t coursify"
+    hour="*/3"
+  tags: [backup]

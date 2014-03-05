@@ -3,7 +3,5 @@
 set -e
 exec 2>&1
 
-source /home/{{ runit_service_owner }}/.rvm/scripts/rvm
-
 cd {{ project_root }}/current
 exec chpst -u {{ deploy_user }} bundle exec sidekiq -e {{ rails_env }}

@@ -6,7 +6,7 @@
 #
 # $ backup perform -t local_backup [-c <path_to_configuration_file>]
 #
-Backup::Model.new(:backup, 'local coursify backup') do
+Backup::Model.new(:coursify, 'local coursify backup') do
   ##
   # Split [Splitter]
   #
@@ -19,8 +19,8 @@ Backup::Model.new(:backup, 'local coursify backup') do
   # PostgreSQL [Database]
   #
   database PostgreSQL do |db|
-    db.name               = "coursify_production"
-    db.username           = "postgres"
+    db.name               = "{{ database_name }}"
+    db.username           = "{{ deploy_user }}"
     # db.password           = "my_password"
     # db.host               = "localhost"
     # db.port               = 5432
@@ -55,8 +55,8 @@ Backup::Model.new(:backup, 'local coursify backup') do
     mail.on_warning           = true
     mail.on_failure           = true
 
-    mail.delivery_method      = :exim
-    mail.from                 = 'VPS 137651-20002'
+    mail.delivery_method      = :file
+    mail.from                 = 'coursify'
     mail.to                   = 'mokevnin@gmail.com'
 
     # mail.from                 = "sender@email.com"

@@ -36,6 +36,13 @@
       authorized_key: user={{ deploy_user }} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
     -
+      name: add repositories
+      apt_repository: repo={{ item }}
+      with_items:
+        - "ppa:brightbox/ruby-ng"
+        - "ppa:nginx/stable"
+
+    -
       name: apt-get update
       apt: update_cache=true cache_valid_time=3600
 
@@ -54,20 +61,15 @@
         - libncurses5-dev
         - python-pycurl
         - redis-server
-
+        - ruby2.1
+        - ruby2.1-dev
+        - rubygems
+        - ruby-switch
+        - nginx
+        - libxml2-dev
         - postgresql-{{ postgresql.version }}
         - libpq-dev
         - python-psycopg2
-
-    -
-      name: add repositories
-      apt_repository: repo='ppa:nginx/stable'
-      tags: [nginx]
-
-    -
-      name: install packages
-      apt: pkg=nginx update_cache=yes
-      tags: [nginx]
 
     -
       name: update nginx vhost conf
@@ -75,14 +77,6 @@
       notify:
         - reload nginx
       tags: [nginx]
-
-    -
-      name: install RVM and Ruby
-      sudo: yes
-      sudo_user: "{{ deploy_user }}"
-      shell: curl -sSL https://get.rvm.io | bash -s stable --ruby --autolibs=enabled
-        creates=~/.rvm
-      tags: [ruby]
 
     -
       name: create postgres user
@@ -133,6 +127,9 @@
     -
       include: runit.yml runit_service_name=coursify_sidekiq runit_service_owner={{ deploy_user }}
       tags: [runit]
+
+    -
+      include: backup.yml
 
   handlers:
     -
