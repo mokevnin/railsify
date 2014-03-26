@@ -35,7 +35,7 @@ Backup::Model.new(:coursify, 'local coursify backup') do
   #
   store_with Local do |local|
     local.path       = "~/backups/"
-    local.keep       = 5
+    local.keep       = 10
   end
 
   ##

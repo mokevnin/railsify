@@ -25,11 +25,12 @@
   template: src=templates/backup.rb.j2 dest=~/Backup/models/coursify.rb
     validate="ruby -c %s"
   tags: [backup]
+
 -
   name: update cron for backup
   sudo: yes
   sudo_user: "{{ deploy_user }}"
   cron: name="backup coursify postgresql"
-    job="backup perform -t coursify"
-    hour="*/3"
+    job="/usr/local/bin/backup perform -t coursify"
+    hour="*/6"
   tags: [backup]
