@@ -15,9 +15,11 @@
   #   - { role: sivel.newrelic, tags: newrelic, newrelic_license_key: d081dd5efb59001c7eb5598635c1c6c9fce5388d }
 
   tasks:
-    -
-      name: install amon agent
-      shell: curl -L https://amon.cx/install/i3in6nh2vhyjyfcjjdpqjdfefwb47gb6/ | bash
+
+    # -
+    #   name: install amon agent
+    #   sudo: yes
+    #   shell: curl -L https://amon.cx/install/i3in6nh2vhyjyfcjjdpqjdfefwb47gb6/ | bash
 
     -
       name: set locale
