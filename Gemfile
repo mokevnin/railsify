@@ -1,10 +1,10 @@
-ruby '2.1.0'
+# ruby '2.1.0'
 
 source 'http://rubygems.org'
 
-gem 'rails', '>= 4.1.0.rc2'
+gem 'rails', '>= 4.1.0'
 gem 'pg'
-gem 'puma'
+gem 'unicorn-rails'
 gem 'draper'
 gem 'carrierwave'
 gem "fog"
@@ -50,9 +50,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'simple_form'
 gem 'authority'
 
-#TODO remove after ransack release
-gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
-gem "polyamorous", github: "activerecord-hackery/polyamorous"
+gem "ransack"
 
 gem 'kaminari'
 gem 'enumerize'
@@ -79,10 +77,11 @@ end
 
 group :development do
   gem 'foreman'
-  gem 'vendorer'
+  gem 'vendorer' #TODO replace by rails-bower
   gem 'quiet_assets'
   gem 'pre-commit'
   gem 'spring'
+  gem 'capistrano', "3.1.0"
   gem 'capistrano-rails'
   # gem 'bullet'
 end
