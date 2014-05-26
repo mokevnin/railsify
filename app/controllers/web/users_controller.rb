@@ -21,7 +21,7 @@ class Web::UsersController < Web::ApplicationController
   end
 
   def confirm
-    user = User.where(params.extract(:id, :confirmation_token)).first!
+    user = User.find_by!(params.extract(:id, :confirmation_token))
     if user.confirm
       sign_in user
       f(:success)

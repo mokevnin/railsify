@@ -8,7 +8,7 @@ class Web::Companies::NewsController < Web::Companies::ApplicationController
   end
 
   def show
-    @news = resource_company.news.where(slug: params[:id]).first!.decorate
+    @news = resource_company.news.find_by!(slug: params[:id]).decorate
 
     add_breadcrumb @news, :company_news
     title @news

@@ -1,0 +1,6 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "bootstrap-switch": "latest"
+  }
+}

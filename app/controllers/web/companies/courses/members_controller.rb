@@ -16,7 +16,7 @@ class Web::Companies::Courses::MembersController < Web::Companies::Courses::Appl
   end
 
   def destroy
-    member = resource_course.members.where(user: current_user).first!
+    member = resource_course.members.find_by!(user: current_user)
     if member.destroy
       f(:success)
     else

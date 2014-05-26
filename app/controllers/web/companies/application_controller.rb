@@ -12,6 +12,6 @@ class Web::Companies::ApplicationController < Web::ApplicationController
   def resource_company
     return @company if @company
     login = request.env['X-COMPANY-LOGIN'] || request.subdomain
-    @company = Company.where(login: login).first!
+    @company = Company.find_by!(login: login)
   end
 end

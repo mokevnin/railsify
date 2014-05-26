@@ -11,9 +11,8 @@
 //= require bootstrap
 //= require jquery.ui.all
 //= require js-routes
-//= require bootstrap-switch
+//= require bootstrap-switch/dist/js/bootstrap-switch
 //= require redactor-rails
-
 //= require_self
 
 $(function(){

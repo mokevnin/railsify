@@ -1,13 +1,13 @@
 class Web::PasswordsController < Web::ApplicationController
   def edit
     return redirect_to(root_path) unless params[:reset_password_token]
-    user = User.where(params.extract(:reset_password_token)).first!
+    user = User.find_by!(params.extract(:reset_password_token))
     @user = user.becomes(UserPasswordType)
   end
 
   def update
     return redirect_to(root_path) unless params[:reset_password_token]
-    user = User.where(params.extract(:reset_password_token)).first!
+    user = User.find_by!(params.extract(:reset_password_token))
     @user = user.becomes(UserPasswordType)
     if @user.update(params[:user])
       f(:success)

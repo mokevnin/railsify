@@ -2,7 +2,7 @@
 
 source 'http://rubygems.org'
 
-gem 'rails', '>= 4.1.0'
+gem 'rails', '>= 4.1.1'
 gem 'pg'
 gem 'unicorn-rails'
 gem 'draper'
@@ -11,9 +11,7 @@ gem "fog"
 gem 'mini_magick'
 gem 'cocoon'
 gem 'sidekiq'
-gem 'sinatra', '>= 1.3.0', require: false
 gem 'rails-observers'
-gem 'json'
 gem 'google-analytics-rails'
 gem 'airbrake'
 
@@ -35,8 +33,6 @@ gem 'chosen-rails' #TODO use rails-assets
 gem 'redactor-rails'
 
 gem 'js-routes'
-gem 'whenever'
-gem 'backup'
 
 gem 'http_accept_language'
 gem 'redcarpet'
@@ -59,9 +55,10 @@ gem 'omniauth-facebook'
 gem 'mail_view' #FIXME use internal feature
 gem 'factory_girl_rails'
 gem 'breadcrumbs_on_rails'
+gem "bower-rails"
 
 group :test, :development do
-  gem 'jazz_hands'
+  # gem 'jazz_hands'
 end
 
 group :test do
@@ -77,11 +74,10 @@ end
 
 group :development do
   gem 'foreman'
-  gem 'vendorer' #TODO replace by rails-bower
   gem 'quiet_assets'
   gem 'pre-commit'
   gem 'spring'
-  gem 'capistrano', "3.1.0"
+  gem 'capistrano'
   gem 'capistrano-rails'
   # gem 'bullet'
 end
