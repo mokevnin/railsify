@@ -2,3 +2,12 @@ rvm:
   - 2.1.0
 before_script:
   - cp config/database.sample.yml config/database.yml
+  - cp config/secrets.sample.yml config/secrets.yml
+  - bin/rake db:create db:migrate
+  - sudo apt-get install npm
+  - sudo npm config set registry http://registry.npmjs.org/
+  - sudo npm cache clean -f
+  - sudo npm install -g n
+  - sudo n stable
+  - sudo npm install -g bower
+  - bin/rake bower:install

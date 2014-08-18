@@ -2,7 +2,7 @@
 
 source 'http://rubygems.org'
 
-gem 'rails', '>= 4.1.1'
+gem 'rails', '>= 4.1.4'
 gem 'pg'
 gem 'unicorn-rails'
 gem 'draper'
@@ -18,15 +18,15 @@ gem 'airbrake'
 gem 'active_model_serializers'
 
 gem 'therubyracer', platforms: :ruby
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 2.5.3'
 #gem 'turbolinks'
 
 gem 'bootstrap-sass'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'sass-rails', '~> 4.0.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.3'
+gem 'coffee-rails', '~> 4.0.1'
 gem 'haml-rails'
 gem 'less-rails'
 gem 'chosen-rails' #TODO use rails-assets
@@ -42,7 +42,7 @@ gem 'validates'
 gem 'state_machine', github: "seuros/state_machine"
 gem 'term-ansicolor'
 gem 'virtus'
-gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt-ruby', '~> 3.1.5'
 gem 'simple_form'
 gem 'authority'
 
