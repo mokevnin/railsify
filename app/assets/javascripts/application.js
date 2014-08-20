@@ -5,26 +5,28 @@
 // the compiled file.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require chosen-jquery
 //= require cocoon
 //= require bootstrap
-//= require jquery.ui.all
 //= require js-routes
 //= require bootstrap-switch/dist/js/bootstrap-switch
 //= require redactor-rails
 //= require_self
+
+$(document).ready(function() {
+  $('input:checkbox').bootstrapSwitch();
+ });
 
 $(function(){
   $('.chosen-select').chosen({disable_search_threshold: 10});
 
   //FIXME to reactjs
   var switcher = $('.make-switch');
-  switcher.on('switch-change', function(e, data) {
-    var $el = $(data.el).parents('.make-switch');
-    value = data.value;
-    // console.log($el.find('a.on'))
-    if (value)
+  switcher.on('switchChange.bootstrapSwitch', function(e, state) {
+    var $el = $(this);
+    if (state)
       $el.find("a.on").click();
     else
       $el.find("a.off").click();

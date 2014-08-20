@@ -15,7 +15,7 @@ class Web::Companies::Admin::Lessons::AttendantsTest < ActionDispatch::Integrati
 
   test "#create" do
     p = ::Companies::Admin::Lessons::Attendants::IndexPage.visit lesson_id: @lesson.id
-    p.switchers.click
+    p.switchers.trigger('click')
     p.wait_for_ajax
 
     assert { @lesson.attendants.exists?(member: @member) }
@@ -25,7 +25,7 @@ class Web::Companies::Admin::Lessons::AttendantsTest < ActionDispatch::Integrati
     @lesson.attendants.create member: @member
 
     p = ::Companies::Admin::Lessons::Attendants::IndexPage.visit lesson_id: @lesson.id
-    p.switchers.click
+    p.switchers.trigger('click')
     p.wait_for_ajax
 
     assert { !@lesson.attendants.exists?(member: @member) }
